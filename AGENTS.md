@@ -106,6 +106,10 @@ More rules:
 - One session (or one cluster) per file in `log/`. Filename:
   `YYYY-MM-DD-short-slug.md`.
 - Never edit files under `dist/` — it is generated.
+- Nothing under `SUPPORT-DO-NOT-TRACK/` ever gets committed. It is raw
+  support material for articles, not site source; the ignore rule
+  enforces this — do not work around it. Distill it into normal
+  content instead.
 - Do not commit secrets or session stores; boris publication sessions
   never belong in this repo.
 
