@@ -1,0 +1,50 @@
+name: deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  SITE_URL: https://droids.filed.fyi/
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout site
+        uses: actions/checkout@v5
+
+      - name: Set up boris
+        uses: ./.github/actions/setup-boris
+
+      - name: Build site
+        run: |
+          boris build --input content --html-dir dist \
+            --theme lab --sitemap --site-url "$SITE_URL" \
+            --layout-rule default id:index lab/layouts/trunk.html \
+            --static-dir static
+          test -f dist/index.html
+          test -f dist/robots.txt
+
+      - name: Emit RSS feed
+        run: |
+          boris build --input content --rss --rss-path dist/rss.xml \
+            --site-url "$SITE_URL" \
+            --rss-title "droids.filed.fyi" \
+            --rss-description "Factory AI field notes — what I delegated, what shipped, and every nit in between."
+          test -f dist/rss.xml
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v4
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy dist --project-name=${{ vars.CF_PAGES_PROJECT || 'droids' }}

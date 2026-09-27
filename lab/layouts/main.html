@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{title}} · droids.filed.fyi</title>
+  <link rel="stylesheet" href="{{asset-url assets/css/lab.css}}">
+  <link rel="stylesheet" href="{{asset-url assets/css/modes.css}}">
+  <link rel="icon" type="image/svg+xml" href="{{asset-url assets/favicon.svg}}">
+  {{head}}
+  <link rel="alternate" type="application/rss+xml" title="droids.filed.fyi" href="https://droids.filed.fyi/rss.xml">
+</head>
+<body>
+<header class="site-header">
+  <div class="masthead">
+    <p class="site-title"><svg class="site-mark" viewBox="0 0 64 64" aria-hidden="true"><defs><linearGradient id="droid-pride" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff5757"/><stop offset=".2" stop-color="#ff9edb"/><stop offset=".4" stop-color="#ffb84d"/><stop offset=".6" stop-color="#ffe873"/><stop offset=".8" stop-color="#63e6a5"/><stop offset="1" stop-color="#b28bff"/></linearGradient></defs><circle class="fur" cx="32" cy="7" r="3"/><path class="tail" d="M 32 10 V 16" fill="none" stroke-width="3" stroke-linecap="round"/><rect class="fur" x="9" y="17" width="46" height="32" rx="10"/><circle class="eye" cx="23" cy="30" r="3.4"/><circle class="eye" cx="41" cy="30" r="3.4"/><path class="tail" d="M 26 40 H 38" fill="none" stroke-width="3" stroke-linecap="round"/></svg>droids<span class="x">.</span>filed.fyi</p>
+    <div class="masthead-controls">
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Cycle color theme">☾ dark</button>
+      <div class="search" id="search-root">
+        <input type="search" id="search-input" placeholder="Search the graph  ( / )"
+               autocomplete="off" spellcheck="false" aria-label="Search pages">
+        <div class="search-results" id="search-results" hidden></div>
+      </div>
+    </div>
+  </div>
+</header>
+<main class="site-body">
+  <div class="site-breadcrumb">{{breadcrumb}}</div>
+  <div class="site-cols">
+    <aside class="site-rail">
+      <nav class="treewrap">{{nav}}</nav>
+      <aside class="site-toc">{{toc}}</aside>
+    </aside>
+    <article class="site-content">
+      {{content}}
+      <section class="graph-panel">
+        <div class="gp-block" id="gp-relations"><p class="gp-title">relations</p>{{relations}}</div>
+        <div class="gp-block" id="gp-children"><p class="gp-title">children</p>{{children}}</div>
+        <div class="gp-block" id="gp-backlinks"><p class="gp-title">backlinks</p>{{backlinks}}</div>
+      </section>
+    </article>
+  </div>
+</main>
+<footer class="site-footer">
+  <p>delegated, not forgotten. <a href="https://droids.filed.fyi/rss.xml">RSS</a>. Built with boris.</p>
+  {{footer}}
+</footer>
+<script src="{{asset-url assets/js/search.js}}" defer></script>
+<script src="{{asset-url assets/js/theme.js}}" defer></script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+name: validate
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout site
+        uses: actions/checkout@v5
+
+      - name: Set up boris
+        uses: ./.github/actions/setup-boris
+
+      - name: Validate content graph (zero-write preflight)
+        run: |
+          boris validate --input content --theme lab \
+            --layout-rule default id:index lab/layouts/trunk.html

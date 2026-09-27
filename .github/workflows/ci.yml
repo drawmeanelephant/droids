@@ -1,0 +1,64 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate content
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup-boris
+      - name: Validate
+        run: boris validate --input content --theme lab --layout-rule default id:index lab/layouts/trunk.html
+
+  build:
+    name: Build site
+    runs-on: ubuntu-latest
+    needs: validate
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup-boris
+      - name: Build HTML
+        run: |
+          boris build --input content --html-dir dist \
+            --theme lab --sitemap --site-url https://droids.filed.fyi/ \
+            --layout-rule default id:index lab/layouts/trunk.html \
+            --static-dir static
+      - name: Build RSS
+        run: |
+          boris build --input content --rss --rss-path dist/rss.xml \
+            --site-url https://droids.filed.fyi/ \
+            --rss-title "droids.filed.fyi" \
+            --rss-description "Factory AI field notes — what I delegated, what shipped, and every nit in between."
+      - name: Check graph health
+        run: boris check --input content
+
+  check-dist:
+    name: Verify dist output
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup-boris
+      - name: Rebuild to verify reproducibility
+        run: |
+          boris build --input content --html-dir dist \
+            --theme lab --sitemap --site-url https://droids.filed.fyi/ \
+            --layout-rule default id:index lab/layouts/trunk.html \
+            --static-dir static
+      - name: Check dist has content
+        run: |
+          COUNT=$(find dist -name '*.html' | wc -l)
+          echo "Generated $COUNT HTML files"
+          [ "$COUNT" -gt 5 ]
+          test -f dist/robots.txt
+          test -f dist/humans.txt
+          test -f dist/cyborgs.txt

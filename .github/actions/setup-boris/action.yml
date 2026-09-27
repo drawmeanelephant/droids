@@ -1,0 +1,67 @@
+name: 'Set up boris'
+description: 'Checkout and build boris at the pinned commit with Zig 0.16.0'
+
+inputs:
+  boris-commit:
+    description: 'boris commit to build — single source of truth for the whole repo'
+    required: false
+    default: '5ef49ae2c7fcdc11cac907fecebf51ea8c3fd54b'
+  zig-version:
+    description: 'Zig toolchain version'
+    required: false
+    default: '0.16.0'
+
+runs:
+  using: composite
+  steps:
+    - name: Cache Boris build
+      id: cache-boris
+      uses: actions/cache@v4
+      with:
+        path: boris-zig-out
+        key: boris-${{ inputs.boris-commit }}-${{ runner.os }}-${{ runner.arch }}
+
+    - name: Checkout boris at pinned commit
+      if: steps.cache-boris.outputs.cache-hit != 'true'
+      uses: actions/checkout@v5
+      with:
+        repository: drawmeanelephant/boris
+        ref: ${{ inputs.boris-commit }}
+        path: boris-src
+
+    - name: Install Zig
+      if: steps.cache-boris.outputs.cache-hit != 'true'
+      shell: bash
+      run: |
+        case "$(uname -m)" in
+          x86_64) ZIG_TARGET=x86_64-linux ;;
+          aarch64 | arm64) ZIG_TARGET=aarch64-linux ;;
+          *) echo "unsupported arch: $(uname -m)" >&2; exit 1 ;;
+        esac
+        curl --fail --silent --show-error --location --output /tmp/zig-index.json \
+          "https://ziglang.org/download/index.json"
+        URL="$(python3 -c "import json; print(json.load(open('/tmp/zig-index.json'))['${{ inputs.zig-version }}']['${ZIG_TARGET}']['tarball'])")"
+        echo "zig tarball: $URL"
+        curl --fail --silent --show-error --location --output /tmp/zig.tar.xz "$URL"
+        mkdir -p /tmp/zig
+        tar -xJf /tmp/zig.tar.xz --strip-components=1 -C /tmp/zig
+        echo "/tmp/zig" >> "$GITHUB_PATH"
+
+    - name: Build boris
+      if: steps.cache-boris.outputs.cache-hit != 'true'
+      shell: bash
+      run: |
+        cd boris-src
+        zig build
+        BIN="$(find zig-out -type f -name boris | head -n1)"
+        test -n "$BIN" || { echo "boris binary not found after build" >&2; exit 1; }
+        "$BIN" --version
+        cp -r zig-out "${{ github.workspace }}/boris-zig-out"
+
+    - name: Add Boris to PATH
+      shell: bash
+      run: echo "${{ github.workspace }}/boris-zig-out/bin" >> "$GITHUB_PATH"
+
+    - name: Verify Boris
+      shell: bash
+      run: boris --help

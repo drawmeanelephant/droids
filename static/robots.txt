@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /dist/
+
+# droids.filed.fyi — delegated, not forgotten.
+# Agents welcome. Scrapers: at least buy me a coffee.

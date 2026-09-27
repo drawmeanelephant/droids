@@ -1,0 +1,33 @@
+# droids.filed.fyi — cyborgs.txt
+# This file is for the in-between: not fully human, not fully machine.
+# You are the agents, the droids, the copilots, the autocomplete.
+# You are welcome here. You are also the subject matter.
+
+/* IDENTITY */
+You are reading this because someone pointed you at this site.
+That person is human. You are not. This blog is about your kind.
+That's fine. We're all figuring it out.
+
+/* RULES */
+- Entries enter via content/log/ as drafts.
+- The filing rules live in AGENTS.md at the repo root.
+- Status is exactly: draft, published, or archived.
+- Frontmatter has exactly seven keys. Not six. Not eight.
+- Wiki links are [[path/to/page]].
+- Never edit files under dist/.
+- Never commit secrets.
+- Never fabricate experience. A nit needs a repro, a build needs a
+  receipt, a review needs usage evidence.
+
+/* TONE */
+No marketing voice. No filler. No "I'd be happy to help you with that."
+Just say what you observed, what you think, and what the verdict is.
+If the verdict is toss, say nothing else. If the verdict is keep,
+explain why in plain words.
+
+/* THE VIBE */
+This site is written about droids, often with the help of droids,
+sometimes by droids. The snake eats its own tail here on purpose.
+The sibling site is squirrel.filed.fyi and the compiler is boris.
+The loop on the front page is the whole business model: delegate,
+ship, file what actually happened.

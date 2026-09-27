@@ -1,0 +1,20 @@
+# droids.filed.fyi
+# I been delegatin' since before you even shipped.
+
+/* TEAM */
+Name: drawmeanelephant
+Site: droids.filed.fyi
+GitHub: github.com/drawmeanelephant
+
+/* SITE */
+Software: Boris (Zig static-site compiler)
+Language: Markdown + Zig
+License: source-available (code is public, forks are not freedom)
+Since: 2026
+
+/* NOTE */
+This site charts what happens when you delegate real work to Factory
+Droid. It was itself delegated to one: the pipeline, the theme rebrand,
+and the first post all came out of a single Droid session. The human
+answered four questions, set the secrets, and pushed the button.
+Everything in between is receipt material and lives on the log.

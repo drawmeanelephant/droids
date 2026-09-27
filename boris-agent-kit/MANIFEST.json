@@ -1,0 +1,22 @@
+{
+  "format": "boris-agent-kit",
+  "schema_version": 1,
+  "repository": "drawmeanelephant/boris",
+  "commit": "a8ef247eca407384081ac9d016981df5caa3087f",
+  "branch": "afterparty",
+  "dirty": false,
+  "platform": "Darwin-arm64",
+  "zig_version": "0.16.0",
+  "binaries": [
+    {"name":"boris","path":"bin/boris","sha256":"19a0a364a3e1854c0ba941fda203989f1ba6e2d1298667eb8a42e94bd5eeca45"},
+    {"name":"boris-package","path":"bin/boris-package","sha256":"85790b3a8f24d9aed5890e772d79b7f0db0ec61558d054b932ef8ffec320f802"},
+    {"name":"boris-source-rag","path":"bin/boris-source-rag","sha256":"4d6123ec554d1c3e6d8c961e3afa8aa6c639a6fccb22c1775468570b6c15295d"},
+    {"name":"boris-content-audit","path":"bin/boris-content-audit","sha256":"b4e070d5a9b5094f316dbb8d87d9c02943a9d805ea0b89ab0e1b5a41aa4edf0e"},
+    {"name":"boris-docs-maintenance","path":"bin/boris-docs-maintenance","sha256":"bbb29b2208254190f21bf05cf5cc546d110e02837e8497700b5f235abd6d20c8"},
+    {"name":"boris-github-pages-audit","path":"bin/boris-github-pages-audit","sha256":"a1c39da3390c86e7fea02bcdea0626799bc8cb1b1c0796c39279c88f3135aaa1"},
+    {"name":"boris-migration-lab","path":"bin/boris-migration-lab","sha256":"de7d1074cc90bb7abf47f965cbbc545fd13ccffdfc8265179de7c2d762e79ab0"},
+    {"name":"boris-scale-smoke","path":"bin/boris-scale-smoke","sha256":"898bb5088eb96f72acb2966710b9005e6464f35fcb647caa950a32b07517db27"},
+    {"name":"boris-search-index","path":"bin/boris-search-index","sha256":"caa482f0abf22827670360946097392180367454ec2c4333eb50d29c5f423281"},
+    {"name":"boris-testdata","path":"bin/boris-testdata","sha256":"999273d1b04f8328b3348660b963282743c334e4627ec86a0b6e02cb905a8a14"}
+  ]
+}
