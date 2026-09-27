@@ -16,6 +16,7 @@ content/            site source (markdown + strict frontmatter)
   builds/           finished delegations: goal, setup, result, receipts
   nits/             the friction ledger — every nit needs a repro
   reviews/          Factory surface reviews after real usage
+  projects/         the empire — per-project hub pages, grouped by family
 lab/                theme (layouts + assets). Do not restructure.
 boris-agent-kit/    boris binaries for Darwin-arm64. Do not modify.
 boris.json          publication profile (content -> dist via lab theme)
@@ -130,6 +131,12 @@ Everything enters `content/log/` as a draft. Then:
   Missions, Software Factory, remote delegations, ...) only after
   enough real usage for a verdict. Never fabricate; usage evidence
   required.
+- **projects** — hub pages for the owner's projects, grouped by family
+  (compiler, renderer, OS, typeface, sites, Mac apps, art). Stubs with
+  receipts — repo links — are fine; pages grow with real usage
+  evidence. Log entries and builds about a project cross-link to its
+  page; undescribed side projects stay on the bucket index until they
+  earn a page.
 
 Promotion path: log entry gains `relations: [relates_to=<new page>]`,
 new page in the bucket links back with `[[log/<entry>]]`.

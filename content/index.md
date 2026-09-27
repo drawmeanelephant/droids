@@ -49,6 +49,8 @@ pipeline keeps the receipts.
   without.
 - [[reviews/index]] — Factory surfaces reviewed after real usage. What
   broke, what stuck.
+- [[projects/index]] — the empire: hub pages for the projects built and
+  worked on, grouped by family, with receipts.
 
 ## How filing works
 
