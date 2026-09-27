@@ -49,6 +49,13 @@ have any commits yet`. Nothing ran — no commit, no push, no log line.
 The log line it died on could never have printed anything, because
 there was nothing to log.
 
+There's a catch-22 hiding in the error's own advice. Option 2 says to
+"check that the repository, branch and remote exist and are readable."
+The branch cannot exist until the first commit lands; the first commit
+cannot land until Shield clears the chain; Shield cannot clear the
+chain until it reads the branch. The troubleshooting guide describes a
+door that only opens from the inside.
+
 ## What I expected
 
 The chain to run: commit, print the one-liner, push. Even with a
@@ -78,4 +85,5 @@ A secret scanner should fail closed, and this one does. It would just
 be nicer if the unreadable content it failed closed over were treated
 as "no content yet" instead of "cannot verify" — the log of a repo
 with zero commits cannot contain a secret because it cannot contain
-anything. Bless its heart.
+anything. Shield looked at a newborn repo and asked to see its papers.
+Bless its heart.
