@@ -12,7 +12,13 @@ papercuts-adjacent behaviors picked up while delegating real work to
 Factory Droid. A nit without a repro is a vibe; vibes live in the
 [[log/index]], not here.
 
-Structure per nit:
+## On the ledger
+
+- [[nits/droid-shield-unborn-branch]] — Droid-Shield fails closed on
+  a repo with no commits, blocking the first commit ceremony. Workaround:
+  commit alone. still-broken.
+
+## Structure per nit:
 
 1. What I did (the exact delegation or command)
 2. What happened (observed, not interpreted)
