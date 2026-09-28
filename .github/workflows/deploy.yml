@@ -28,8 +28,8 @@ jobs:
       - name: Build site
         run: |
           boris build --input content --html-dir dist \
-            --theme lab --sitemap --site-url "$SITE_URL" \
-            --layout-rule default id:index lab/layouts/trunk.html \
+            --theme manila --sitemap --site-url "$SITE_URL" \
+            --layout-rule default id:index manila/layouts/trunk.html \
             --static-dir static
           test -f dist/index.html
           test -f dist/robots.txt

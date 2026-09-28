@@ -9,7 +9,7 @@ Same pipeline as squirrel.filed.fyi.
 ## Layout
 
 - `content/` — site source (markdown + strict frontmatter)
-- `lab/` — site theme (layouts + assets)
+- `manila/` — site theme (layouts + assets); see [Theme](#theme)
 - `boris-agent-kit/` — Boris binaries for Darwin-arm64 (local dev only;
   CI builds Boris from source at the pinned commit)
 - `AGENTS.md` — the contract for agents working in this repo. Read it
@@ -19,8 +19,8 @@ Same pipeline as squirrel.filed.fyi.
 
 ```sh
 boris build --input content --html-dir dist \
-  --theme lab --sitemap --site-url https://droids.filed.fyi/ \
-  --layout-rule default id:index lab/layouts/trunk.html \
+  --theme manila --sitemap --site-url https://droids.filed.fyi/ \
+  --layout-rule default id:index manila/layouts/trunk.html \
   --static-dir static
 ```
 
@@ -28,8 +28,32 @@ Or watch + serve on loopback:
 
 ```sh
 boris watch --input content --html-dir dist \
-  --theme lab --serve --static-dir static
+  --theme manila --serve --static-dir static \
+  --layout-rule default id:index manila/layouts/trunk.html
 ```
+
+## Theme
+
+`manila/` is this site's own theme: every page is a filed record.
+
+- The breadcrumb is the folder tab, `{{metadata}}` is the docket
+  (status stamp + tag chips), and `{{children}}` is the "Filed here"
+  list. The rail carries the TOC, relations, and backlinks.
+- The top bar is `{{nav depth=2}}`; each bucket gets a status light, lit
+  for the section you are in.
+- Three modes (dark, light, pride), stored in `localStorage` under
+  `droids-mode`. An inline head script applies the saved mode before
+  first paint.
+- `assets/js/manila.js` is progressive enhancement only: mode switch,
+  tag chips, key/value labels for the Surface / Date / Evidence /
+  Verdict list under a log entry's title, terminal frames with copy
+  buttons, and a `/` or Cmd/Ctrl-K search palette over
+  `_boris/search/search-index.json`. Pages read fine without it.
+- `layouts/trunk.html` is the homepage layout (no record chrome, no site
+  suffix in `<title>`).
+- Type is [Geist and Geist Mono](https://github.com/vercel/geist-font),
+  self-hosted under the SIL Open Font License
+  (`manila/assets/fonts/OFL.txt`).
 
 ## Deployment
 
