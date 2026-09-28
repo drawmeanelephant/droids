@@ -4,53 +4,44 @@ tags: [home]
 summary: Field notes from delegating real work to Factory Droid — what I did, what it did, and every nit in between.
 ---
 
+<header class="hero">
+<p class="eyebrow">Field notes on Factory droids</p>
+<h1 class="hero__title" id="field-notes">What I delegated, what shipped, <span>and every nit in between.</span></h1>
+<p class="hero__lede">Where the Factory AI experience gets charted: what I delegated, what actually shipped, and the nits picked out of the fur along the way. The human writes the verdicts. The droids do most of the typing. The pipeline keeps the receipts.</p>
+</header>
+
 <figure class="loop">
-<svg viewBox="0 0 800 340" role="img" aria-label="The delegation loop: I delegate to the droid, the droid ships to prod, prod generates nits and receipts, and they come back to me.">
-<g font-family="ui-monospace, 'SF Mono', Menlo, monospace">
-<rect x="35" y="50" width="150" height="70" rx="12" fill="#5eead4" fill-opacity="0.09" stroke="#5eead4" stroke-opacity="0.5" stroke-width="1.5"/>
-<rect x="325" y="50" width="150" height="70" rx="12" fill="#5eead4" fill-opacity="0.09" stroke="#5eead4" stroke-opacity="0.5" stroke-width="1.5"/>
-<rect x="615" y="50" width="150" height="70" rx="12" fill="#5eead4" fill-opacity="0.09" stroke="#5eead4" stroke-opacity="0.5" stroke-width="1.5"/>
-<g fill="var(--bright, #eef4fa)" font-size="24" font-weight="700" text-anchor="middle">
-<text x="110" y="92">me</text>
-<text x="400" y="92">droid</text>
-<text x="690" y="92">prod</text>
-</g>
-<g stroke="#5eead4" stroke-opacity="0.7" stroke-width="2" fill="none">
-<path d="M 191 85 H 311"/>
-<path d="M 481 85 H 601"/>
-<path d="M 690 124 V 232 H 110 V 132"/>
-</g>
-<g fill="#5eead4">
-<polygon points="321,79 311,85 321,91"/>
-<polygon points="611,79 601,85 611,91"/>
-<polygon points="104,132 110,120 116,132"/>
-</g>
-<g fill="var(--ink, #c9d4de)" font-size="17" text-anchor="middle">
-<text x="254" y="74">delegate</text>
-<text x="544" y="74">ship</text>
-<text x="400" y="222">nits, surprises, receipts</text>
-</g>
-</g>
+<svg viewBox="0 20 800 225" role="img" aria-label="The delegation loop: I delegate to the droid, the droid ships to prod, prod generates nits and receipts, and they come back to me.">
+<g class="n"><rect x="35" y="40" width="150" height="70" rx="10"/><text x="110" y="83" text-anchor="middle">me</text></g>
+<g class="n n--droid"><rect x="325" y="40" width="150" height="70" rx="10"/><text x="400" y="83" text-anchor="middle">droid</text><circle class="dot" cx="461" cy="54" r="5"/></g>
+<g class="n"><rect x="615" y="40" width="150" height="70" rx="10"/><text x="690" y="83" text-anchor="middle">prod</text></g>
+<path class="e" d="M 191 75 H 309"/>
+<path class="e" d="M 481 75 H 599"/>
+<path class="e e--back" d="M 690 116 V 222 H 110 V 124"/>
+<polygon class="h" points="307,69 319,75 307,81"/>
+<polygon class="h" points="597,69 609,75 597,81"/>
+<polygon class="h h--back" points="104,124 110,112 116,124"/>
+<text class="l" x="251" y="62" text-anchor="middle">delegate</text>
+<text class="l" x="541" y="62" text-anchor="middle">ship</text>
+<text class="l l--back" x="400" y="210" text-anchor="middle">nits, surprises, receipts</text>
 </svg>
 <figcaption>the content strategy is a control loop and the droid is the plant</figcaption>
 </figure>
 
-Where the Factory AI experience gets charted: what I delegated, what
-actually shipped, and the nits picked out of the fur along the way. The
-human writes the verdicts. The droids do most of the typing. The
-pipeline keeps the receipts.
-
 ## Buckets
 
-- [[log/index]] — the running feed: session debriefs, news takes, nits
-  noticed mid-delegation. Newest first.
-- [[builds/index]] — things built with Factory end-to-end, with receipts.
-- [[nits/index]] — the friction ledger. Every nit with a repro, none
-  without.
-- [[reviews/index]] — Factory surfaces reviewed after real usage. What
-  broke, what stuck.
-- [[projects/index]] — the empire: hub pages for the projects built and
-  worked on, grouped by family, with receipts.
+- [[log/index]]
+  The running feed: session debriefs, news takes, nits noticed
+  mid-delegation. Newest first.
+- [[builds/index]]
+  Things built with Factory end-to-end, with receipts.
+- [[nits/index]]
+  The friction ledger. Every nit with a repro, none without.
+- [[reviews/index]]
+  Factory surfaces reviewed after real usage. What broke, what stuck.
+- [[projects/index]]
+  The empire: hub pages for the projects built and worked on,
+  grouped by family, with receipts.
 
 ## How filing works
 

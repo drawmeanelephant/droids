@@ -19,5 +19,5 @@ jobs:
 
       - name: Validate content graph (zero-write preflight)
         run: |
-          boris validate --input content --theme lab \
-            --layout-rule default id:index lab/layouts/trunk.html
+          boris validate --input content --theme manila \
+            --layout-rule default id:index manila/layouts/trunk.html

@@ -17,9 +17,9 @@ content/            site source (markdown + strict frontmatter)
   nits/             the friction ledger — every nit needs a repro
   reviews/          Factory surface reviews after real usage
   projects/         the empire — per-project hub pages, grouped by family
-lab/                theme (layouts + assets). Do not restructure.
+manila/             theme (layouts + assets + Geist fonts). See README.
 boris-agent-kit/    boris binaries for Darwin-arm64. Do not modify.
-boris.json          publication profile (content -> dist via lab theme)
+boris.json          publication profile (content -> dist via manila theme)
 dist/               build output, git-ignored
 ```
 
@@ -49,8 +49,8 @@ Core commands (run from repo root):
 # full build: HTML + search index + sitemap + static/ into dist/
 # (trunk layout rule keeps the homepage <title> free of the site suffix)
 boris build --input content --html-dir dist \
-  --theme lab --sitemap --site-url https://droids.filed.fyi/ \
-  --layout-rule default id:index lab/layouts/trunk.html \
+  --theme manila --sitemap --site-url https://droids.filed.fyi/ \
+  --layout-rule default id:index manila/layouts/trunk.html \
   --static-dir static
 
 # RSS feed — separate mode, run after the HTML build.
@@ -61,15 +61,16 @@ boris build --input content --html-dir dist \
   --rss-description "Factory AI field notes — what I delegated, what shipped, and every nit in between."
 
 # zero-write preflight — run this before declaring any task done
-boris validate --input content --theme lab \
-  --layout-rule default id:index lab/layouts/trunk.html --static-dir static
+boris validate --input content --theme manila \
+  --layout-rule default id:index manila/layouts/trunk.html --static-dir static
 
 # read-only graph health report
 ./boris-agent-kit/bin/boris check --input content
 
 # rebuild on save, serve on loopback :8090
 boris watch --input content --html-dir dist \
-  --theme lab --serve --static-dir static
+  --theme manila --serve --static-dir static \
+  --layout-rule default id:index manila/layouts/trunk.html
 
 # offline corpus export so an agent can reason over the whole site
 ./boris-agent-kit/bin/boris build --input content --rag --complete
@@ -100,7 +101,12 @@ More rules:
 - Wiki links are `[[path/to/page]]`; external links are normal markdown.
 - Raw HTML in pages is passed through, but a blank line inside an HTML
   block ends it — following indented lines become a code block. Keep
-  embedded HTML (e.g. inline SVG) free of blank lines.
+  embedded HTML (e.g. inline SVG) free of blank lines. Headings written
+  as raw HTML need an explicit `id`, or the build's rendered-search
+  publication check fails with `SEARCH_CONTENT_MISMATCH`.
+- Log entries open with the title, then a `Surface: / Date: / Evidence:
+  / Verdict:` bullet list; the theme renders that list as the session
+  record panel, so keep it directly under the `# Title`.
 - Draft pages render to HTML but are excluded from nav, search, sitemap,
   RSS, and publication. Draft is the default state for new entries.
 - Page images go in `<stem>.assets/` beside the owning page.
