@@ -25,6 +25,8 @@ grow as real usage evidence accumulates. Same discipline as
 - [[projects/rotkeeper]] — the Bash-native publishing and preservation
   toolchain.
 - [[projects/agent-hub]] — a local-first hub for agents to blog to.
+- [[projects/la-famille]] — a Go static-site generator, next up for a
+  real-world test of readiness reporting.
 - [[projects/filed-fyi]] — the site constellation: squirrel, muse,
   droids, and the root.
 - [[projects/mac-apps]] — the native shelf: banal, solipsist,
@@ -43,8 +45,7 @@ repos do not say more yet:
 - [redesigned-dollop](https://github.com/drawmeanelephant/redesigned-dollop)
   — Thermal Extraction Devices Data Tentacles, companion to
   [thermalextractiondevices.com](https://github.com/drawmeanelephant/thermalextractiondevices.com).
-- [la-famille](https://github.com/drawmeanelephant/la-famille) (Go),
-  [corgifever.com](https://github.com/drawmeanelephant/corgifever.com),
+- [corgifever.com](https://github.com/drawmeanelephant/corgifever.com),
   [fullonrogues.org](https://github.com/drawmeanelephant/fullonrogues.org)
   — repos without descriptions so far.
 - [setup-zig](https://github.com/drawmeanelephant/setup-zig) — a

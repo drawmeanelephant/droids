@@ -17,6 +17,8 @@ Factory Droid. A nit without a repro is a vibe; vibes live in the
 - [[nits/droid-shield-unborn-branch]] — Droid-Shield fails closed on
   a repo with no commits, blocking the first commit ceremony. Workaround:
   commit alone. still-broken.
+- [[nits/stale-readiness-worktree]] — readiness reports can score an old
+  worktree as current. Fetch and compare before trusting the score.
 
 ## Structure per nit:
 
