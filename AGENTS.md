@@ -194,7 +194,8 @@ the same treatment as everyone else:
   lands through a pull request.
 - Required checks from `ci.yml`: `Validate content`, `Build site`,
   `Verify dist output`. The branch must be up to date with `main`.
-- Squash merge only, linear history. Merged branches are deleted.
+- Merge commits only; squash merges are disabled, and linear history is
+  not required. Merged branches are deleted.
 - Zero approvals required, but every review thread must be resolved.
 
 ```sh
@@ -202,15 +203,15 @@ git switch -c droid/<short-slug>   # never commit on main
 # ...edit, validate, build, commit (only when asked)...
 git push -u origin HEAD            # pushing is outward-facing: only when asked
 gh pr create --fill --base main
-gh pr merge --squash --auto        # merges itself once checks pass
+gh pr merge --merge --auto         # merges itself once checks pass
 gh pr update-branch                # when main moved and the PR is behind
 ```
 
 - Auto-merge will not update a branch that is behind `main`; run
   `gh pr update-branch`, or the PR waits forever.
 - `gh pr merge --admin` fails by design. Fix the check instead.
-- The squash message keeps every branch commit message, so
-  `Co-authored-by` trailers survive. Write commits accordingly.
+- Merge commits preserve the branch commits and their
+  `Co-authored-by` trailers. Write commits accordingly.
 - Renaming a job in `ci.yml` breaks the required check. Update the
   ruleset in the same change, or PRs wait on a check that never reports.
 
