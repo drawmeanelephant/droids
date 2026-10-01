@@ -1,0 +1,25 @@
+{
+  "oliver_version_stdout": "oliver 1.1.0 (commit 3615e6253f0e17b410cf1b987507d30bfcde537c)",
+  "canonical_conformance_stdout": "Cooklang canonical conformance: 60/60 passed",
+  "canonical_conformance_exit": 0,
+  "final_campaign_repeat": {
+    "corpus.jsonl": {
+      "sha256": "77db9e2dcdacbb7fa261ec07e316c52d50873d5c74d126272c40c7838b45d94b",
+      "repeat_identical": true
+    },
+    "results.jsonl": {
+      "sha256": "fef5530f5d956d5134cc675f2f4a546b5b715ba25ea6e1b0448c6f7f387b1c85",
+      "repeat_identical": true
+    },
+    "summary.json": {
+      "sha256": "69693fe9594bd6c37be5a627ab1f950d80e824d5a9c4f7e623450fce0fe1c688",
+      "repeat_identical": true
+    }
+  },
+  "minimization_comparisons": 74,
+  "roundtrip_cases": 400,
+  "semantic_failures": 3,
+  "idempotence_failures": 3,
+  "script_syntax_checks": "campaign.py/minimize.py AST parse and reproduce.sh sh -n passed",
+  "commonmark": "652/652 owner supplied; not rerun"
+}

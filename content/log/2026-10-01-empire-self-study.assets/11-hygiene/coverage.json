@@ -1,0 +1,716 @@
+{
+  "collected_at": "2026-10-01T12:42:31.956303+00:00",
+  "repositories": [
+    {
+      "name": "fart-app",
+      "observed_at": "2026-10-01T12:42:05.019751+00:00",
+      "errors": [],
+      "default_branch": "main",
+      "fork": false,
+      "archived": false,
+      "has_issues": true,
+      "parent": null,
+      "sha": "cc2cd4a6b4f07d14f439004db981db7a1055f807",
+      "tree_truncated": false,
+      "readmes": [
+        "README.md"
+      ],
+      "root_instructions": [],
+      "open_issues": 3,
+      "open_prs": 1,
+      "open_history_complete": true,
+      "closed_issues": 28,
+      "closed_prs": 25,
+      "closed_history_complete": true
+    },
+    {
+      "name": "atmosplorer",
+      "observed_at": "2026-10-01T12:42:05.051765+00:00",
+      "errors": [],
+      "default_branch": "main",
+      "fork": false,
+      "archived": false,
+      "has_issues": true,
+      "parent": null,
+      "sha": "806db2a711f8a3a2d903f0fafe20d09ffc4a9480",
+      "tree_truncated": false,
+      "readmes": [
+        "README.md"
+      ],
+      "root_instructions": [],
+      "open_issues": 0,
+      "open_prs": 0,
+      "open_history_complete": true,
+      "closed_issues": 0,
+      "closed_prs": 2,
+      "closed_history_complete": true
+    },
+    {
+      "name": "virelai-sans",
+      "observed_at": "2026-10-01T12:42:05.075251+00:00",
+      "errors": [],
+      "default_branch": "main",
+      "fork": false,
+      "archived": false,
+      "has_issues": true,
+      "parent": null,
+      "sha": "e023614728579b59f20298d333e8b5a8d989c199",
+      "tree_truncated": false,
+      "readmes": [
+        "README.md"
+      ],
+      "root_instructions": [],
+      "open_issues": 5,
+      "open_prs": 1,
+      "open_history_complete": true,
+      "closed_issues": 5,
+      "closed_prs": 8,
+      "closed_history_complete": true
+    },
+    {
+      "name": "2nap",
+      "observed_at": "2026-10-01T12:42:05.083521+00:00",
+      "errors": [],
+      "default_branch": "main",
+      "fork": false,
+      "archived": false,
+      "has_issues": true,
+      "parent": null,
+      "sha": "b23fcad79bc9d55b062263c34f643b4df2e44ef6",
+      "tree_truncated": false,
+      "readmes": [
+        "README.md"
+      ],
+      "root_instructions": [],
+      "open_issues": 0,
+      "open_prs": 0,
+      "open_history_complete": true,
+      "closed_issues": 0,
+      "closed_prs": 1,
+      "closed_history_complete": true
+    },
+    {
+      "name": "boris",
+      "observed_at": "2026-10-01T12:42:05.090018+00:00",
+      "errors": [],
+      "default_branch": "main",
+      "fork": false,
+      "archived": false,
+      "has_issues": true,
+      "parent": null,
+      "sha": "08969742f85238443ce5cd1cd53ceab1b1f3f85a",
+      "tree_truncated": false,
+      "readmes": [
+        "README.md"
+      ],
+      "root_instructions": [
+        "AGENTS.md"
+      ],
+      "open_issues": 4,
+      "open_prs": 0,
+      "open_history_complete": true,
+      "closed_issues": 48,
+      "closed_prs": 52,
+      "closed_history_complete": false
+    },
+    {
+      "name": "k4o",
+      "observed_at": "2026-10-01T12:42:05.115532+00:00",
+      "errors": [],
+      "default_branch": "main",
+      "fork": false,
+      "archived": false,
+      "has_issues": true,
+      "parent": null,
+      "sha": "59f88233589d2643ba5b4f380e3db70664bba2b3",
+      "tree_truncated": false,
+      "readmes": [
+        "README.md"
+      ],
+      "root_instructions": [],
+      "open_issues": 0,
+      "open_prs": 0,
+      "open_history_complete": true,
+      "closed_issues": 10,
+      "closed_prs": 10,
+      "closed_history_complete": true
+    },
+    {
+      "name": "VirelaiOS",
+      "observed_at": "2026-10-01T12:42:09.198094+00:00",
+      "errors": [],
+      "default_branch": "main",
+      "fork": false,
+      "archived": false,
+      "has_issues": true,
+      "parent": null,
+      "sha": "fc21e5315d498a999974bc11da0ed2cd1dd39cbb",
+      "tree_truncated": false,
+      "readmes": [
+        "README.md"
+      ],
+      "root_instructions": [
+        "AGENTS.md"
+      ],
+      "open_issues": 2,
+      "open_prs": 1,
+      "open_history_complete": true,
+      "closed_issues": 42,
+      "closed_prs": 58,
+      "closed_history_complete": false
+    },
+    {
+      "name": "la-famille",
+      "observed_at": "2026-10-01T12:42:09.488525+00:00",
+      "errors": [],
+      "default_branch": "master",
+      "fork": false,
+      "archived": false,
+      "has_issues": true,
+      "parent": null,
+      "sha": "bb9c4952331ad9e9401e2f3645617018a18bb9c5",
+      "tree_truncated": false,
+      "readmes": [
+        "README.md"
+      ],
+      "root_instructions": [
+        "AGENTS.md"
+      ],
+      "open_issues": 4,
+      "open_prs": 0,
+      "open_history_complete": true,
+      "closed_issues": 48,
+      "closed_prs": 52,
+      "closed_history_complete": false
+    },
+    {
+      "name": "droids.filed.fyi",
+      "observed_at": "2026-10-01T12:42:09.519927+00:00",
+      "errors": [],
+      "default_branch": "main",
+      "fork": false,
+      "archived": false,
+      "has_issues": true,
+      "parent": null,
+      "sha": "399e93109108990772b5da0ff4b2fbc2d01bb7bf",
+      "tree_truncated": false,
+      "readmes": [
+        "README.md"
+      ],
+      "root_instructions": [
+        "AGENTS.md"
+      ],
+      "open_issues": 0,
+      "open_prs": 0,
+      "open_history_complete": true,
+      "closed_issues": 1,
+      "closed_prs": 7,
+      "closed_history_complete": true
+    },
+    {
+      "name": "solipsist",
+      "observed_at": "2026-10-01T12:42:09.557019+00:00",
+      "errors": [],
+      "default_branch": "main",
+      "fork": false,
+      "archived": false,
+      "has_issues": true,
+      "parent": null,
+      "sha": "53f1e3e448fa509a3eaaf9e7f3905f0d387b23cc",
+      "tree_truncated": false,
+      "readmes": [
+        "README.md"
+      ],
+      "root_instructions": [
+        "AGENTS.md"
+      ],
+      "open_issues": 0,
+      "open_prs": 0,
+      "open_history_complete": true,
+      "closed_issues": 56,
+      "closed_prs": 44,
+      "closed_history_complete": false
+    },
+    {
+      "name": "fullonrogues.org",
+      "observed_at": "2026-10-01T12:42:09.641525+00:00",
+      "errors": [],
+      "default_branch": "main",
+      "fork": false,
+      "archived": false,
+      "has_issues": true,
+      "parent": null,
+      "sha": "ad2de869158dfc6c9fccbbfd5f865e2b584b8276",
+      "tree_truncated": false,
+      "readmes": [
+        "README.md"
+      ],
+      "root_instructions": [
+        "AGENTS.md"
+      ],
+      "open_issues": 0,
+      "open_prs": 0,
+      "open_history_complete": true,
+      "closed_issues": 0,
+      "closed_prs": 4,
+      "closed_history_complete": true
+    },
+    {
+      "name": "ninjam",
+      "observed_at": "2026-10-01T12:42:11.499966+00:00",
+      "errors": [],
+      "default_branch": "main",
+      "fork": true,
+      "archived": false,
+      "has_issues": true,
+      "parent": "justinfrankel/ninjam",
+      "sha": "5b5f266d49d836b5700c09bea149cc88c11bd4b7",
+      "tree_truncated": false,
+      "readmes": [
+        "README.md"
+      ],
+      "root_instructions": [],
+      "open_issues": 1,
+      "open_prs": 0,
+      "open_history_complete": true,
+      "closed_issues": 13,
+      "closed_prs": 15,
+      "closed_history_complete": true
+    },
+    {
+      "name": "oliver",
+      "observed_at": "2026-10-01T12:42:13.794907+00:00",
+      "errors": [],
+      "default_branch": "main",
+      "fork": false,
+      "archived": false,
+      "has_issues": true,
+      "parent": null,
+      "sha": "3615e6253f0e17b410cf1b987507d30bfcde537c",
+      "tree_truncated": false,
+      "readmes": [
+        "README.md"
+      ],
+      "root_instructions": [],
+      "open_issues": 1,
+      "open_prs": 0,
+      "open_history_complete": true,
+      "closed_issues": 35,
+      "closed_prs": 65,
+      "closed_history_complete": false
+    },
+    {
+      "name": "boris-content-audit",
+      "observed_at": "2026-10-01T12:42:14.958481+00:00",
+      "errors": [],
+      "default_branch": "main",
+      "fork": false,
+      "archived": false,
+      "has_issues": true,
+      "parent": null,
+      "sha": "c8ace046d70973459cf2b65b6ab6b7c9d84af028",
+      "tree_truncated": false,
+      "readmes": [
+        "README.md"
+      ],
+      "root_instructions": [],
+      "open_issues": 0,
+      "open_prs": 0,
+      "open_history_complete": true,
+      "closed_issues": 0,
+      "closed_prs": 1,
+      "closed_history_complete": true
+    },
+    {
+      "name": "boris.filed.fyi",
+      "observed_at": "2026-10-01T12:42:16.059160+00:00",
+      "errors": [],
+      "default_branch": "main",
+      "fork": false,
+      "archived": false,
+      "has_issues": true,
+      "parent": null,
+      "sha": "97535d1f39ece03c211de0538e34af9361b6a721",
+      "tree_truncated": false,
+      "readmes": [
+        "README.md"
+      ],
+      "root_instructions": [],
+      "open_issues": 0,
+      "open_prs": 0,
+      "open_history_complete": true,
+      "closed_issues": 0,
+      "closed_prs": 13,
+      "closed_history_complete": true
+    },
+    {
+      "name": "corgifever.com",
+      "observed_at": "2026-10-01T12:42:16.340113+00:00",
+      "errors": [],
+      "default_branch": "main",
+      "fork": false,
+      "archived": false,
+      "has_issues": true,
+      "parent": null,
+      "sha": "d9045dac96a520da007ad21cedfdcdfe915a3dfa",
+      "tree_truncated": false,
+      "readmes": [
+        "README.md"
+      ],
+      "root_instructions": [
+        "AGENTS.md"
+      ],
+      "open_issues": 0,
+      "open_prs": 0,
+      "open_history_complete": true,
+      "closed_issues": 0,
+      "closed_prs": 3,
+      "closed_history_complete": true
+    },
+    {
+      "name": "drawmeanelephant.com",
+      "observed_at": "2026-10-01T12:42:16.527313+00:00",
+      "errors": [],
+      "default_branch": "main",
+      "fork": false,
+      "archived": false,
+      "has_issues": true,
+      "parent": null,
+      "sha": "8cbbf43ef8e52d5c5311cff683fbb716fb91078f",
+      "tree_truncated": false,
+      "readmes": [
+        "README.md"
+      ],
+      "root_instructions": [],
+      "open_issues": 0,
+      "open_prs": 0,
+      "open_history_complete": true,
+      "closed_issues": 0,
+      "closed_prs": 10,
+      "closed_history_complete": true
+    },
+    {
+      "name": "thermalextractiondevices.com",
+      "observed_at": "2026-10-01T12:42:17.225974+00:00",
+      "errors": [],
+      "default_branch": "main",
+      "fork": false,
+      "archived": false,
+      "has_issues": true,
+      "parent": null,
+      "sha": "49d076093ca593fc19f913570ff4fce9c8f40cdf",
+      "tree_truncated": false,
+      "readmes": [
+        "README.md"
+      ],
+      "root_instructions": [
+        "AGENTS.md"
+      ],
+      "open_issues": 1,
+      "open_prs": 14,
+      "open_history_complete": true,
+      "closed_issues": 0,
+      "closed_prs": 45,
+      "closed_history_complete": true
+    },
+    {
+      "name": "filed.fyi",
+      "observed_at": "2026-10-01T12:42:19.413382+00:00",
+      "errors": [],
+      "default_branch": "main",
+      "fork": false,
+      "archived": false,
+      "has_issues": true,
+      "parent": null,
+      "sha": "081a7e3e0e1b94b363e77dff493900679a1162dd",
+      "tree_truncated": false,
+      "readmes": [
+        "README.md"
+      ],
+      "root_instructions": [
+        "AGENTS.md"
+      ],
+      "open_issues": 0,
+      "open_prs": 0,
+      "open_history_complete": true,
+      "closed_issues": 17,
+      "closed_prs": 83,
+      "closed_history_complete": false
+    },
+    {
+      "name": "boris-migration-lab",
+      "observed_at": "2026-10-01T12:42:19.683648+00:00",
+      "errors": [],
+      "default_branch": "main",
+      "fork": false,
+      "archived": false,
+      "has_issues": true,
+      "parent": null,
+      "sha": "f40aa8a48f9c8e2cc85be01363c9f1005c0bd1ce",
+      "tree_truncated": false,
+      "readmes": [
+        "README.md"
+      ],
+      "root_instructions": [],
+      "open_issues": 2,
+      "open_prs": 0,
+      "open_history_complete": true,
+      "closed_issues": 7,
+      "closed_prs": 10,
+      "closed_history_complete": true
+    },
+    {
+      "name": "zig-zouave",
+      "observed_at": "2026-10-01T12:42:20.261872+00:00",
+      "errors": [],
+      "default_branch": "main",
+      "fork": false,
+      "archived": false,
+      "has_issues": true,
+      "parent": null,
+      "sha": "2d8510d62b517fa786279562cf8b1bdcf0c47b9f",
+      "tree_truncated": false,
+      "readmes": [
+        "README.md"
+      ],
+      "root_instructions": [],
+      "open_issues": 0,
+      "open_prs": 0,
+      "open_history_complete": true,
+      "closed_issues": 0,
+      "closed_prs": 1,
+      "closed_history_complete": true
+    },
+    {
+      "name": "dogbed",
+      "observed_at": "2026-10-01T12:42:20.758010+00:00",
+      "errors": [],
+      "default_branch": "main",
+      "fork": false,
+      "archived": false,
+      "has_issues": true,
+      "parent": null,
+      "sha": "1d9c9a60cf9e6dc94748ca581328930edc1f4cee",
+      "tree_truncated": false,
+      "readmes": [
+        "README.md"
+      ],
+      "root_instructions": [],
+      "open_issues": 0,
+      "open_prs": 0,
+      "open_history_complete": true,
+      "closed_issues": 2,
+      "closed_prs": 7,
+      "closed_history_complete": true
+    },
+    {
+      "name": "z.filed.fyi",
+      "observed_at": "2026-10-01T12:42:21.781612+00:00",
+      "errors": [],
+      "default_branch": "main",
+      "fork": false,
+      "archived": false,
+      "has_issues": true,
+      "parent": null,
+      "sha": "888f502588a12624d90b9be1f7df0c7cd7b397a3",
+      "tree_truncated": false,
+      "readmes": [
+        "README.md"
+      ],
+      "root_instructions": [],
+      "open_issues": 0,
+      "open_prs": 0,
+      "open_history_complete": true,
+      "closed_issues": 1,
+      "closed_prs": 3,
+      "closed_history_complete": true
+    },
+    {
+      "name": "muse.filed.fyi",
+      "observed_at": "2026-10-01T12:42:21.911597+00:00",
+      "errors": [],
+      "default_branch": "main",
+      "fork": false,
+      "archived": false,
+      "has_issues": true,
+      "parent": null,
+      "sha": "a78886ff4c8afb2f8bef8bda3d1b2eaf2785054e",
+      "tree_truncated": false,
+      "readmes": [
+        "README.md"
+      ],
+      "root_instructions": [],
+      "open_issues": 0,
+      "open_prs": 0,
+      "open_history_complete": true,
+      "closed_issues": 0,
+      "closed_prs": 0,
+      "closed_history_complete": true
+    },
+    {
+      "name": "banal",
+      "observed_at": "2026-10-01T12:42:22.827529+00:00",
+      "errors": [],
+      "default_branch": "main",
+      "fork": false,
+      "archived": false,
+      "has_issues": true,
+      "parent": null,
+      "sha": "24e1da4439b016473119738b233eb8e636979cc6",
+      "tree_truncated": false,
+      "readmes": [
+        "README.md"
+      ],
+      "root_instructions": [
+        "AGENTS.md"
+      ],
+      "open_issues": 1,
+      "open_prs": 0,
+      "open_history_complete": true,
+      "closed_issues": 49,
+      "closed_prs": 51,
+      "closed_history_complete": false
+    },
+    {
+      "name": "squirrel.filed.fyi",
+      "observed_at": "2026-10-01T12:42:22.906366+00:00",
+      "errors": [],
+      "default_branch": "main",
+      "fork": false,
+      "archived": false,
+      "has_issues": true,
+      "parent": null,
+      "sha": "4860fae61e7418838a3b8db229010e153d15fdef",
+      "tree_truncated": false,
+      "readmes": [
+        "README.md"
+      ],
+      "root_instructions": [
+        "AGENTS.md"
+      ],
+      "open_issues": 1,
+      "open_prs": 0,
+      "open_history_complete": true,
+      "closed_issues": 0,
+      "closed_prs": 10,
+      "closed_history_complete": true
+    },
+    {
+      "name": "rotkeeper",
+      "observed_at": "2026-10-01T12:42:23.497843+00:00",
+      "errors": [],
+      "default_branch": "main",
+      "fork": false,
+      "archived": false,
+      "has_issues": true,
+      "parent": null,
+      "sha": "de3b393be3d1aeb041a4be7665700b5e6dedb10e",
+      "tree_truncated": false,
+      "readmes": [
+        "README.md"
+      ],
+      "root_instructions": [
+        "AGENTS.md"
+      ],
+      "open_issues": 0,
+      "open_prs": 0,
+      "open_history_complete": true,
+      "closed_issues": 48,
+      "closed_prs": 52,
+      "closed_history_complete": false
+    },
+    {
+      "name": "setup-zig",
+      "observed_at": "2026-10-01T12:42:23.590706+00:00",
+      "errors": [],
+      "default_branch": "main",
+      "fork": true,
+      "archived": false,
+      "has_issues": false,
+      "parent": "mlugg/setup-zig",
+      "sha": "31b51da6a961bb5903fef5cc8f22db25a0223d67",
+      "tree_truncated": false,
+      "readmes": [
+        "README.md"
+      ],
+      "root_instructions": [],
+      "open_issues": 0,
+      "open_prs": 0,
+      "open_history_complete": true,
+      "closed_issues": 0,
+      "closed_prs": 0,
+      "closed_history_complete": true
+    },
+    {
+      "name": "agent-hub",
+      "observed_at": "2026-10-01T12:42:25.634105+00:00",
+      "errors": [],
+      "default_branch": "main",
+      "fork": false,
+      "archived": false,
+      "has_issues": true,
+      "parent": null,
+      "sha": "6db64069854c56795a0656b5c5af9ad57b2326a4",
+      "tree_truncated": false,
+      "readmes": [
+        "README.md"
+      ],
+      "root_instructions": [
+        "AGENTS.md",
+        "CLAUDE.md"
+      ],
+      "open_issues": 0,
+      "open_prs": 0,
+      "open_history_complete": true,
+      "closed_issues": 0,
+      "closed_prs": 11,
+      "closed_history_complete": true
+    },
+    {
+      "name": "mediluna",
+      "observed_at": "2026-10-01T12:42:26.786432+00:00",
+      "errors": [],
+      "default_branch": "main",
+      "fork": false,
+      "archived": false,
+      "has_issues": true,
+      "parent": null,
+      "sha": "0475f581af56c4cb47d48eb5ad444e0e0d004e6c",
+      "tree_truncated": false,
+      "readmes": [
+        "README.md"
+      ],
+      "root_instructions": [],
+      "open_issues": 1,
+      "open_prs": 1,
+      "open_history_complete": true,
+      "closed_issues": 0,
+      "closed_prs": 7,
+      "closed_history_complete": true
+    },
+    {
+      "name": "redesigned-dollop",
+      "observed_at": "2026-10-01T12:42:28.429393+00:00",
+      "errors": [],
+      "default_branch": "main",
+      "fork": false,
+      "archived": false,
+      "has_issues": true,
+      "parent": null,
+      "sha": "55dca9e4811eee1d48e8d89fbd0e2f91b7bb236c",
+      "tree_truncated": false,
+      "readmes": [
+        "README.md"
+      ],
+      "root_instructions": [
+        "AGENTS.md"
+      ],
+      "open_issues": 1,
+      "open_prs": 0,
+      "open_history_complete": true,
+      "closed_issues": 0,
+      "closed_prs": 4,
+      "closed_history_complete": true
+    }
+  ]
+}
