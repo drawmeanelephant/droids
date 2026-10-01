@@ -1,0 +1,24 @@
+{
+  "textile": {
+    "cases": 400,
+    "raw_equal": 0,
+    "normalized_equal": 240,
+    "divergent": 160,
+    "reference_rejected": 0,
+    "execution_error": 0
+  },
+  "cooklang": {
+    "cases": 400,
+    "raw_equal": 296,
+    "normalized_equal": 296,
+    "divergent": 88,
+    "reference_rejected": 16,
+    "execution_error": 0
+  },
+  "seed": 9001,
+  "python": "3.14.7",
+  "textile_version": "4.0.4",
+  "cooklang_bindings": "0.6.0",
+  "cooklang_rs": "0.18.7",
+  "corpus_sha256": "77db9e2dcdacbb7fa261ec07e316c52d50873d5c74d126272c40c7838b45d94b"
+}

@@ -1,0 +1,346 @@
+{
+  "method": "Repeated left-to-right single-character deletion, preserving family predicate; 1-minimal under that predicate, not globally shortest",
+  "comparisons": 51,
+  "cases": [
+    {
+      "name": "block-comment-crosses-blank-line",
+      "original": "x [- a\n\nb -] y",
+      "input": "[-\n\n-]",
+      "oliver": [
+        [
+          "step",
+          [
+            [
+              "text",
+              "[-"
+            ]
+          ]
+        ],
+        [
+          "step",
+          [
+            [
+              "text",
+              "-]"
+            ]
+          ]
+        ]
+      ],
+      "reference": [],
+      "normalized_oliver": [
+        [
+          "step",
+          [
+            [
+              "text",
+              "[-"
+            ]
+          ]
+        ],
+        [
+          "step",
+          [
+            [
+              "text",
+              "-]"
+            ]
+          ]
+        ]
+      ],
+      "normalized_reference": []
+    },
+    {
+      "name": "note-comment",
+      "original": "> -- comment",
+      "input": ">--",
+      "oliver": [
+        [
+          "note",
+          "--"
+        ]
+      ],
+      "reference": [
+        [
+          "note",
+          ""
+        ]
+      ],
+      "normalized_oliver": [
+        [
+          "note",
+          "--"
+        ]
+      ],
+      "normalized_reference": [
+        [
+          "note",
+          ""
+        ]
+      ]
+    },
+    {
+      "name": "punctuated-braced-name",
+      "original": "@salt, black pepper{}",
+      "input": "@t,{}",
+      "oliver": [
+        [
+          "step",
+          [
+            [
+              "ingredient",
+              "t",
+              null,
+              "",
+              null
+            ],
+            [
+              "text",
+              ",{}"
+            ]
+          ]
+        ]
+      ],
+      "reference": [
+        [
+          "step",
+          [
+            [
+              "ingredient",
+              "t,",
+              null,
+              "",
+              null
+            ]
+          ]
+        ]
+      ],
+      "normalized_oliver": [
+        [
+          "step",
+          [
+            [
+              "ingredient",
+              "t",
+              null,
+              "",
+              null
+            ],
+            [
+              "text",
+              ",{}"
+            ]
+          ]
+        ]
+      ],
+      "normalized_reference": [
+        [
+          "step",
+          [
+            [
+              "ingredient",
+              "t,",
+              null,
+              "",
+              null
+            ]
+          ]
+        ]
+      ]
+    },
+    {
+      "name": "space-before-braces",
+      "original": "@salt {1%g}",
+      "input": "@t {}",
+      "oliver": [
+        [
+          "step",
+          [
+            [
+              "ingredient",
+              "t",
+              null,
+              "",
+              null
+            ],
+            [
+              "text",
+              " {}"
+            ]
+          ]
+        ]
+      ],
+      "reference": [
+        [
+          "step",
+          [
+            [
+              "ingredient",
+              "t",
+              null,
+              "",
+              null
+            ]
+          ]
+        ]
+      ],
+      "normalized_oliver": [
+        [
+          "step",
+          [
+            [
+              "ingredient",
+              "t",
+              null,
+              "",
+              null
+            ],
+            [
+              "text",
+              " {}"
+            ]
+          ]
+        ]
+      ],
+      "normalized_reference": [
+        [
+          "step",
+          [
+            [
+              "ingredient",
+              "t",
+              null,
+              "",
+              null
+            ]
+          ]
+        ]
+      ]
+    },
+    {
+      "name": "textile-code-terminal-newline",
+      "original": "bc. <x>",
+      "input": "bc. >",
+      "oliver": "<pre><code>&gt;\n</code></pre>\n",
+      "reference": "<pre><code>&gt;</code></pre>",
+      "normalized_oliver": [
+        [
+          "start",
+          "pre",
+          []
+        ],
+        [
+          "start",
+          "code",
+          []
+        ],
+        [
+          "text",
+          ">\n"
+        ],
+        [
+          "end",
+          "code"
+        ],
+        [
+          "end",
+          "pre"
+        ]
+      ],
+      "normalized_reference": [
+        [
+          "start",
+          "pre",
+          []
+        ],
+        [
+          "start",
+          "code",
+          []
+        ],
+        [
+          "text",
+          ">"
+        ],
+        [
+          "end",
+          "code"
+        ],
+        [
+          "end",
+          "pre"
+        ]
+      ]
+    },
+    {
+      "name": "textile-bracket-forcing",
+      "original": "c[*oo*]l",
+      "input": "c[*o*]l",
+      "oliver": "<p>c[<strong>o</strong>]l</p>\n",
+      "reference": "\t<p>c<strong>o</strong>l</p>",
+      "normalized_oliver": [
+        [
+          "start",
+          "p",
+          []
+        ],
+        [
+          "text",
+          "c["
+        ],
+        [
+          "start",
+          "strong",
+          []
+        ],
+        [
+          "text",
+          "o"
+        ],
+        [
+          "end",
+          "strong"
+        ],
+        [
+          "text",
+          "]l"
+        ],
+        [
+          "end",
+          "p"
+        ]
+      ],
+      "normalized_reference": [
+        [
+          "start",
+          "p",
+          []
+        ],
+        [
+          "text",
+          "c"
+        ],
+        [
+          "start",
+          "strong",
+          []
+        ],
+        [
+          "text",
+          "o"
+        ],
+        [
+          "end",
+          "strong"
+        ],
+        [
+          "text",
+          "l"
+        ],
+        [
+          "end",
+          "p"
+        ]
+      ]
+    }
+  ]
+}

@@ -1,0 +1,110 @@
+{
+  "observed_at": "2026-10-01",
+  "k4o_sha": "59f88233589d2643ba5b4f380e3db70664bba2b3",
+  "issues": [
+    {
+      "number": 19,
+      "title": "Add opt-in GFM table output to the Markdown backend",
+      "state": "closed",
+      "html_url": "https://github.com/drawmeanelephant/k4o/issues/19",
+      "body": "## Summary\n\n`--format markdown` (PR #18) is strict CommonMark, and CommonMark has no table syntax. knap \u2014 the black-box oracle, and Obsidian's own engine \u2014 emits GFM pipe tables, which is what Obsidian consumers want. Add an opt-in GFM output that renders k4o tables as pipe tables. The strict default does not change.\n\n## What exists / gap\n\n- The differential script's `EXCLUDED_FIXTURES` carries `examples/table` and `fixtures/filter-table-basic` with the reason \"Knap emits a GFM pipe table; CommonMark has no table syntax\".\n- k4o's `table` filter takes no arguments: an array of rows, each an array of text cells (`|` and newlines already rejected at render). There is no alignment metadata to honor.\n\n## Deliverables\n\n1. New format value `--format gfm`: byte-identical to `--format markdown` except tables render as GFM pipe tables (header row, `---` delimiter row, one row per line). No alignment markers \u2014 the filter carries no alignment info; plain `---` delimiters.\n2. `--format markdown` output is unchanged, still strict CommonMark. The GFM tables are knowingly unfriendly to oliver (strict CommonMark reads pipe tables as paragraphs) \u2014 document that as the opt-in tradeoff, not a bug.\n3. Move `examples/table` and `fixtures/filter-table-basic` out of `EXCLUDED_FIXTURES` into byte-parity against knap 0.6.0 under the gfm format. The exclusion list drops from 13 to 11.\n4. Add `.gfm` (or equivalent) expectations for the table fixtures, mirroring the `.markdown` expectations from #18.\n5. Document the contract: `markdown` = strict CommonMark 0.31.2; `gfm` = CommonMark + GFM pipe tables, for Obsidian consumers.\n\n## Non-goals\n\nOther GFM extensions (strikethrough, task lists, autolink extensions) \u2014 tables only. Changing the default `--format markdown` output. Table features the filter doesn't have (alignment, cell spans).\n\n## Acceptance / Verification\n\n- `zig build test` green; differential + CommonMark CI jobs green on Linux and macOS with 11 exclusions.\n- The two table fixtures byte-match knap 0.6.0 under `--format gfm`.\n- `--format markdown` output for all fixtures is byte-identical before/after (no default behavior change).\n\n## Depends on\n\n#18 (merged). Nothing else.\n"
+    },
+    {
+      "number": 9,
+      "title": "README verification table records macOS arm64 results that CI will silently drift from",
+      "state": "closed",
+      "html_url": "https://github.com/drawmeanelephant/k4o/issues/9",
+      "body": "The README's \"Recorded results\" table states:\n\n> Recorded results (Zig 0.16.0, macOS arm64):\n> | passthrough | all tests fail (0 passed / 24 failed) |\n\nThis is a hand-maintained snapshot. Nothing regenerates it, nothing checks it, and the counts (24) are already at risk of drifting from `tests.zig` as cases are added \u2014 the table would then be quietly wrong rather than obviously wrong.\n\nTwo options:\n- **Delete the table** and let CI be the source of truth, with the mutant commands in the README as the instructions.\n- **Keep it but automate it**: have `verify.sh` (or CI) emit the table, and add a check that fails if the committed table no longer matches.\n\nThe first is less work and removes a thing that can rot. The second preserves the \"here is the evidence\" quality that makes this project different from a template engine with a test suite and a prayer.\n\nRelated: the counts in the table (0 passed / 24 failed) do not obviously match the number of tests in `tests.zig`, which is worth reconciling while deciding."
+    },
+    {
+      "number": 8,
+      "title": "Run the full tools/verify.sh in CI, including the red-green mutant modes",
+      "state": "closed",
+      "html_url": "https://github.com/drawmeanelephant/k4o/issues/8",
+      "body": "The repo's strongest asset is its verification methodology \u2014 the fixture corpus plus the `-Dengine-mode=passthrough` and `-Dengine-mode=markdown` mutants that *prove* the tests can fail. Right now all of it lives in `tools/verify.sh`, which the README explicitly says is \"not CI: run it yourself\".\n\nThe GitHub Actions workflow added during setup runs `zig build` and `zig build test` only. So:\n\n- The mutant modes are never executed on a PR, and the red-green claim is asserted by a table in the README rather than demonstrated per-commit.\n- The ReleaseSafe build and the `x86_64-linux-musl` static cross-build are not checked.\n- The CLI smoke tests (three examples byte-compared, error paths exiting 1 with empty stdout) are not checked.\n\n**Suggested second CI job** (or a matrix leg) that runs `tools/verify.sh` and asserts the mutant modes *fail*: a mutant run that unexpectedly passes should break the build, since that means the test suite has stopped discriminating.\n\n`verify.sh` already writes logs to `$KT_VERIFY_DIR`, so surfacing those as job artifacts on failure would be cheap and would make CI failures diagnosable without a local repro."
+    },
+    {
+      "number": 7,
+      "title": "link filter does no URL scheme validation (javascript: and file: pass straight through)",
+      "state": "closed",
+      "html_url": "https://github.com/drawmeanelephant/k4o/issues/7",
+      "body": "The `link` filter validates that the URL is non-empty and free of whitespace and double quotes, but applies no scheme check. Confirmed pass-through:\n\n```json\n{\"name\":\"click\",\"url\":\"javascript:alert(1)\"}\n```\n```text\n{{ name | link:url }}   (or with the literal form)\n```\nemits\n\n```text\n\"click\":javascript:alert(1)\n```\n\n`file:///etc/passwd` also passes.\n\nTo be clear about severity: this is a *templating* tool, and its input is assumed to come from a trusted pipeline. The question is whether the trust boundary belongs here. If the JSON data is ever attacker-influenced (a wiki import, a scraped feed, an API response), `javascript:` in Textile becomes a script-injection vector in whatever renders the Textile \u2014 and the README's whole premise is that a downstream Textile parser renders the result.\n\n**Suggested**: either document that URL schemes are the caller's responsibility, or reject the obviously-dangerous schemes (`javascript:`, `data:`, `vbscript:`) with a `bad argument` diagnostic. The existing error path makes this a ~5-line change and it would fail loudly rather than silently."
+    },
+    {
+      "number": 6,
+      "title": "Interpolating an object or array emits raw JSON into the Textile",
+      "state": "closed",
+      "html_url": "https://github.com/drawmeanelephant/k4o/issues/6",
+      "body": "When an `{{ ... }}` expression resolves to an object or array, `writeValue` in `src/engine.zig` (line 214) falls through to `std.json.Stringify`:\n\n```text\n{{ o }}\n```\nwith `{\"o\":{\"b\":2,\"a\":1}}` emits\n\n```text\n{\"b\":2,\"a\":1}\n```\n\nKey order is preserved from the input, so the output is not even deterministic across equivalent JSON inputs that happen to serialise differently.\n\nThis is a defensible design choice (matching Knap's behaviour for structured values), but it is undocumented, and the result is almost never what a Textile author wants \u2014 a JSON blob in the middle of prose. Two things worth doing:\n\n- Document it in the \"Template subset\" table, which currently implies interpolation is text.\n- Consider it a candidate for an explicit filter or a hard error, so a stray `{{ obj }}` is noticed rather than shipped.\n\nRelated: floats lose their decimal point on interpolation \u2014 `{\"a\":2.0}` renders as `2` (see `putFmt(\"{d}\", ...)` at line 211). That one is arguably correct, but it means a float and an int are indistinguishable in output."
+    },
+    {
+      "number": 5,
+      "title": "Project still identifies as knap-textile; rename to k4o now that the repo has a real name",
+      "state": "closed",
+      "html_url": "https://github.com/drawmeanelephant/k4o/issues/5",
+      "body": "The repository is `drawmeanelephant/k4o`, but the code, CLI, and docs all still say `knap-textile`. A first-time visitor to the repo sees `k4o` in the URL and `knap-textile` everywhere in the source, which reads as a mistake.\n\n**Where the old name lives**\n- `build.zig` \u2014 executable `.name`, module name `knap_textile`\n- `build.zig.zon` \u2014 `.name = .knap_textile` (and note: changing `.name` invalidates `.fingerprint`, so the fingerprint must be regenerated)\n- `src/main.zig` \u2014 usage text, `--version` output, the `report` prefix, module doc comment\n- `src/root.zig` \u2014 module doc comment\n- `src/filters.zig` / `src/parse.zig` \u2014 doc comments\n- `tests.zig` and `tools/verify.sh` \u2014 `KT_VERIFY_DIR` default path, the `# knap-textile verification script` header\n- `README.md` \u2014 title, the ASCII pipeline diagram, all `zig-out/bin/knap-textile` examples, the clean-room record, the verification section\n\n**Decisions to make first**\n- Binary name: `k4o`? It is short, but the README will need a note on what it expands to for discoverability.\n- Package/module identifier: `k4o` is a valid Zig identifier, so `build.zig.zon` can use `.k4o` and `@import(\"k4o\")` throughout.\n- Whether the clean-room record and the *methodology* prose should keep the descriptive name `knap-textile` (it is accurate: the engine is still a Knap-to-Textile engine) while the *project* is k4o. Probably yes \u2014 the record describes the software, the repo is the home.\n\nAlso worth fixing in the same pass: the repo description has a typo (`pipleline` -> `pipeline`) and the description itself is more joke than summary."
+    },
+    {
+      "number": 4,
+      "title": "CLI rejects `--data=FILE` and treats a bare filename after the template as a second template",
+      "state": "closed",
+      "html_url": "https://github.com/drawmeanelephant/k4o/issues/4",
+      "body": "Two ergonomic gaps in the argument loop in `src/main.zig` (lines 63-79), both confirmed:\n\n**1. \\`--data=FILE\\` is not supported.** The parser only handles the space-separated form:\n\n```text\nknap-textile render t.knap --data=d.json\n=> knap-textile: unknown option\n```\n\nSince `--data` starts with `-`, it falls into the `arg[0] == '-'` catch-all. The `--flag=value` form is near-universal in modern CLIs and is what a user will try first.\n\n**2. A bare second positional is an error, not data.** This one is defensible but unforgiving:\n\n```text\nknap-textile render t.knap d.json\n=> knap-textile: multiple template files\n```\n\nThe error message does not hint that `--data` was probably intended. A suggestion here (\"did you mean --data d.json?\") would save a confused user a trip to `--help`.\n\nBoth are small changes. Suggestion 1 is the one that actually matters; 2 is polish."
+    },
+    {
+      "number": 3,
+      "title": "`==` and `!=` always return false for arrays and objects",
+      "state": "closed",
+      "html_url": "https://github.com/drawmeanelephant/k4o/issues/3",
+      "body": "`valueEq` in `src/engine.zig` ends with:\n\n```zig\n.array, .object => false,\n```\n\nso an object is never equal to *itself*:\n\n```text\n{% if x == x %}EQ{% else %}NEQ{% endif %}\n```\nemits `NEQ` for `{\"x\":{\"k\":1}}`. Arrays likewise. The result is not that the comparison is refused, but that it silently reports equality as false \u2014 the same class of quiet-wrongness as issue #1, and it falls out of the same `switch` that handles the scalar cases.\n\nWorth noting the asymmetry with truthiness: `truthy` treats a non-empty array and *any* object as true (so `[]` is false but `{}` is true), while equality treats both as never-equal. One of the two is likely the intent, but as written they disagree.\n\n**Options**: deep structural equality (needs an ordering-insensitive object compare), a documented \"scalars only\" limitation with a diagnostic on misuse, or rejecting `==` on non-scalars at parse time. A README note that `==` is scalar-only would at minimum stop the surprise."
+    },
+    {
+      "number": 2,
+      "title": "Unbounded output amplification: nested loops can exhaust memory (240MB from a 30-line template)",
+      "state": "closed",
+      "html_url": "https://github.com/drawmeanelephant/k4o/issues/2",
+      "body": "The 16MB input cap on the CLI bounds the *input*, but nothing bounds the *output*. A template of ~30 lines over three 300-element arrays produced **240,300,001 bytes** and took ~15s to render:\n\n```json\n{\"a\":[...300...],\"b\":[...300...],\"c\":[...300...]}\n```\n```text\n{% for x in a %}{% for y in b %}{% for z in c %}{{ x }}{{ y }}{{ z }}\n{% endfor %}{% endfor %}{% endfor %}\n```\n\nThree levels of 300 is 27M iterations. Output grows as the *product* of the loop lengths, so this is exponential from the template author's point of view \u2014 a 4th level over the same data would need ~72 billion lines.\n\nIt does not crash; it just grows until the arena allocator is exhausted, at which point `put` returns `error.OutOfMemory` and the CLI reports `out of memory`. That is a safe failure, but it is a *late* one, after minutes of work and hundreds of MB.\n\n**Suggested**: a configurable output cap (`--max-output`, defaulting to something generous like 256MB) that fails with a clear diagnostic naming the loop depth, rather than a bare OOM. Worth documenting the multiplicative property in the README regardless, since it is a genuine footgun for template authors."
+    },
+    {
+      "number": 1,
+      "title": "Filter arguments are literals only \u2014 `link:url` silently emits the text `url`",
+      "state": "closed",
+      "html_url": "https://github.com/drawmeanelephant/k4o/issues/1",
+      "body": "A filter argument is parsed as a literal token (`parse.Arg` is `bare` | `string` | `number`). A bare word is never resolved against the data root, so a URL held in JSON comes out as the *word* `url`:\n\n```json\n{\"name\":\"click\",\"url\":\"https://example.com/post\"}\n```\n```text\n{{ name | link:url }}\n```\nemits\n\n```text\n\"click\":url\n```\n\ninstead of `\"click\":https://example.com/post`. No warning, exit 0 \u2014 the output is silently wrong.\n\nThis is the most dangerous failure mode in the tool because it is quiet. A template author reasonably writes `link:url`, sees a plausible-looking Textile line, and ships a page where every link points at the literal string `url`.\n\n**Options**\n- Resolve bare args against the data root, falling back to the literal when there is no such key.\n- Or reject a bare arg that matches a top-level data key, forcing `link:\"https://...\"`.\n\nEither is defensible, but silent pass-through is not. Relevant: `argText` in `src/filters.zig` (line 237) has no access to the data root, so this is an API-shape change, not a one-line fix."
+    }
+  ],
+  "relevant_prs": [
+    {
+      "number": 20,
+      "title": "Add opt-in GFM table output",
+      "body": "## Summary\n- Add `--format gfm` and the library `.gfm` format. Reuse CommonMark output for every non-table construct, including escaping and loop whitespace; keep Textile as the default.\n- Render pipe tables with no alignment markers. Add `.gfm` expectations for both table fixtures and move them into byte-parity against the pinned knap 0.6.0 oracle, reducing exclusions from 13 to 11.\n- Keep all `.markdown` expectations unchanged and continue parsing their HTML tables with Oliver. Document the Obsidian/strict CommonMark tradeoff. No other GFM extensions or table features are added.\n\n## Oracle/spec clarification\nIssue #19 requested first-row headers and `---` delimiters, but the actual knap 0.6.0 no-argument table oracle emits an empty header and plain `-` delimiters, with every input row in the body. After observing that conflict, the requester explicitly chose **exact knap bytes, including the empty header and single-hyphen delimiters**. This PR follows that clarified contract; it does not normalize oracle output or rewrite the table input. Knap's TypeScript source was not read.\n\n## Local validation\n- `zig build test --summary all`: 45/45 pass.\n- Differential + CommonMark checks with CI-pinned Oliver `a45aa5ede557ea7cf7de727bdba61c1f80af544b`: 99 cases pass, 75 byte-identical to knap 0.6.0 (including both GFM tables), 11 exclusions.\n- Captured Markdown output before implementation and byte-compared all 52 fixtures after: identical.\n- `tools/verify.sh --check-readme`: 30 checks pass, including ReleaseSafe, CLI smoke tests, static x86_64-linux-musl build, and zero survivors under both mutants.\n- Zig formatting, Python compilation, shell syntax, and `git diff --check` pass.\n\nCloses #19.\n",
+      "html_url": "https://github.com/drawmeanelephant/k4o/pull/20",
+      "merged_at": "2026-10-01T11:02:51Z",
+      "merge_commit_sha": "59f88233589d2643ba5b4f380e3db70664bba2b3"
+    },
+    {
+      "number": 18,
+      "title": "Add CommonMark output backend and differential checks",
+      "body": "## Summary\n- Add `--format markdown` while preserving Textile as the default, with a shared template/data pipeline and CommonMark-specific filter output.\n- Add byte-exact `.markdown` expectations for all 52 existing fixtures, a pinned knap 0.6.0 black-box differential corpus, and Oliver CommonMark structure checks.\n- Run the differential suite on Linux and macOS in CI. The corpus has 73 byte-identical oracle cases; 13 legacy fixtures are checked against committed Markdown output and Oliver but cannot match knap without changing k4o's existing filter/data semantics or emitting GFM-only tables.\n\n## Validation\n- `zig build test` and `tools/verify.sh --check-readme` pass.\n- `python3 tools/differential/run.py --oliver /Users/tbuddy/.local/bin/oliver` passes 99 cases, including malformed templates and adversarial CommonMark inputs.\n- `zig fmt --check`, `actionlint`, `shellcheck`, JSON/Python syntax checks pass.\n\n## Compatibility boundary\nFull byte parity with official knap across *all* existing templates is impossible under the simultaneous requirements that the template language/data handling remain unchanged and the output be CommonMark. Knap 0.6.0 rejects `codeblock` and `numbered`, reverses `link` arguments, compares objects by identity, and emits GFM tables. The 13 exclusions are explicit and documented in `tools/differential/run.py` and README; this PR does **not** claim full parity. No knap TypeScript source was read.\n",
+      "html_url": "https://github.com/drawmeanelephant/k4o/pull/18",
+      "merged_at": "2026-10-01T03:18:47Z",
+      "merge_commit_sha": "c31abbfb3122941954b8c6ba77116ec5664c1f97"
+    }
+  ],
+  "ci": [
+    {
+      "head_sha": "59f88233589d2643ba5b4f380e3db70664bba2b3",
+      "conclusion": "success",
+      "html_url": "https://github.com/drawmeanelephant/k4o/actions/runs/36852901288",
+      "created_at": "2026-10-01T11:02:54Z",
+      "updated_at": "2026-10-01T11:04:18Z"
+    }
+  ],
+  "verification": {
+    "upstream_harness": "PASS 99 cases: 75 byte-identical to knap 0.6.0 (including 2 GFM tables); 11 documented fixture incompatibilities checked with Oliver",
+    "exploratory_cases": 52,
+    "stdout_and_status_matches": 25,
+    "knap_successes": 52,
+    "k4o_successes": 48
+  }
+}

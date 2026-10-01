@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" data-mode="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{title}} · droids.filed.fyi</title>
+  <script>try{var m=localStorage.getItem("droids-mode");if(m!=="dark"&&m!=="light"&&m!=="pride")m=matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";document.documentElement.dataset.mode=m}catch(e){}</script>
+  <link rel="stylesheet" href="{{asset-url assets/css/manila.css}}">
+  <link rel="icon" type="image/svg+xml" href="{{asset-url assets/favicon.svg}}">
+  {{head}}
+  <link rel="alternate" type="application/rss+xml" title="droids.filed.fyi" href="https://droids.filed.fyi/rss.xml">
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+<header class="bar">
+  <div class="bar__in">
+    <svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><defs><linearGradient id="mk-pride" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff5f6d"/><stop offset=".22" stop-color="#ffb347"/><stop offset=".42" stop-color="#ffe66d"/><stop offset=".62" stop-color="#6ee7a8"/><stop offset=".8" stop-color="#5ac8fa"/><stop offset="1" stop-color="#b28bff"/></linearGradient></defs><path class="m-body" d="M4 9.5Q4 7 6.5 7H12Q13.2 7 13.9 7.9L15.4 9.6H25.5Q28 9.6 28 12.1V24.5Q28 27 25.5 27H6.5Q4 27 4 24.5Z"/><path class="m-ant" d="M23 9.6 25 4.8" fill="none" stroke-width="1.8" stroke-linecap="round"/><circle class="m-dot" cx="25.4" cy="3.9" r="2.4"/><rect class="m-eye" x="9.5" y="15.2" width="4.6" height="3.4" rx="1.7"/><rect class="m-eye" x="17.9" y="15.2" width="4.6" height="3.4" rx="1.7"/><rect class="m-eye" x="12.6" y="21.4" width="6.8" height="1.7" rx=".85"/></svg>
+    <div class="bar__nav">{{nav depth=2}}</div>
+    <div class="bar__tools">
+      <button class="find" type="button" data-palette-open aria-haspopup="dialog" hidden><span>Search</span><kbd>/</kbd></button>
+      <div class="modes" role="group" aria-label="Color mode" hidden>
+        <button type="button" data-mode-set="dark" aria-pressed="false">Dark</button>
+        <button type="button" data-mode-set="light" aria-pressed="false">Light</button>
+        <button type="button" data-mode-set="pride" aria-pressed="false">Pride</button>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="desk">
+  <main class="desk__main" id="main">
+    <article class="record">
+      <div class="record__tab" data-boris-search-exclude>{{breadcrumb}}</div>
+      <div class="record__card">
+        <div class="record__docket" data-boris-search-exclude>{{metadata}}</div>
+        <div class="record__body" id="content">{{content}}</div>
+        <section class="record__filed" aria-label="Filed here" data-boris-search-exclude><p class="eyebrow">Filed here</p>{{children}}</section>
+      </div>
+    </article>
+    <aside class="rail" aria-label="Page context" data-boris-search-exclude>
+      <section class="rail__block rail__toc"><p class="eyebrow">On this page</p>{{toc}}</section>
+      <section class="rail__block"><p class="eyebrow">Cross-references</p>{{relations}}</section>
+      <section class="rail__block"><p class="eyebrow">Referenced by</p>{{backlinks}}</section>
+    </aside>
+  </main>
+</div>
+<footer class="foot">{{footer}}</footer>
+<dialog class="palette" id="palette" aria-label="Search the site">
+  <div class="palette__in">
+    <label class="palette__prompt"><span aria-hidden="true">&gt;</span><input type="search" placeholder="search the log, builds, nits…" autocomplete="off" spellcheck="false" aria-label="Search pages" role="combobox" aria-controls="palette-results" aria-expanded="false" aria-autocomplete="list"></label>
+    <ul class="palette__results" id="palette-results" role="listbox" aria-label="Results"></ul>
+    <p class="palette__hint"><kbd>↑</kbd><kbd>↓</kbd> move <kbd>enter</kbd> open <kbd>esc</kbd> close</p>
+  </div>
+</dialog>
+<script src="{{asset-url assets/js/manila.js}}" defer></script>
+</body>
+</html>

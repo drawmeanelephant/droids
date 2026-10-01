@@ -1,0 +1,122 @@
+[
+  {
+    "repo": "drawmeanelephant/fart-app",
+    "title": "ci: harden demo reference provisioning and phase evidence",
+    "url": "https://github.com/drawmeanelephant/fart-app/issues/58",
+    "body_file": "issues/fart-app-bootstrap.md",
+    "card": "03-fart-app",
+    "filed_at": "2026-10-01T12:51:17.235376+00:00"
+  },
+  {
+    "repo": "drawmeanelephant/la-famille",
+    "title": "Measure opt-in Ollama retrieval against frozen hard probes and real cache timings",
+    "url": "https://github.com/drawmeanelephant/la-famille/issues/602",
+    "body_file": "issues/la-famille-measurement.md",
+    "card": "06-la-famille",
+    "filed_at": "2026-10-01T12:51:18.434693+00:00"
+  },
+  {
+    "repo": "drawmeanelephant/la-famille",
+    "title": "Preserve strict no-answer for the frozen sensor warranty near-miss probe",
+    "url": "https://github.com/drawmeanelephant/la-famille/issues/603",
+    "body_file": "issues/la-famille-abstention.md",
+    "card": "06-la-famille",
+    "filed_at": "2026-10-01T12:51:19.333099+00:00"
+  },
+  {
+    "repo": "drawmeanelephant/ninjam",
+    "title": "Include third-party notices in release archives before the first tag",
+    "url": "https://github.com/drawmeanelephant/ninjam/issues/36",
+    "body_file": "issues/ninjam-notices.md",
+    "card": "07-ninjam",
+    "filed_at": "2026-10-01T12:51:20.592190+00:00"
+  },
+  {
+    "repo": "drawmeanelephant/ninjam",
+    "title": "Align build and platform documentation with current CMake and Zig behavior",
+    "url": "https://github.com/drawmeanelephant/ninjam/issues/37",
+    "body_file": "issues/ninjam-docs.md",
+    "card": "07-ninjam",
+    "filed_at": "2026-10-01T12:51:21.619315+00:00"
+  },
+  {
+    "repo": "drawmeanelephant/k4o",
+    "title": "Preserve empty, whitespace, and terminal-newline Markdown code content",
+    "url": "https://github.com/drawmeanelephant/k4o/issues/21",
+    "body_file": "issues/k4o-code-boundaries.md",
+    "card": "04-k4o",
+    "filed_at": "2026-10-01T12:53:42.887022+00:00"
+  },
+  {
+    "repo": "drawmeanelephant/k4o",
+    "title": "Indent nested ordered lists relative to the actual parent marker width",
+    "url": "https://github.com/drawmeanelephant/k4o/issues/22",
+    "body_file": "issues/k4o-ordered-indent.md",
+    "card": "04-k4o",
+    "filed_at": "2026-10-01T12:53:43.702221+00:00"
+  },
+  {
+    "repo": "drawmeanelephant/k4o",
+    "title": "Escape ordered-list markers in scalar Markdown list-item text",
+    "url": "https://github.com/drawmeanelephant/k4o/issues/23",
+    "body_file": "issues/k4o-scalar-markers.md",
+    "card": "04-k4o",
+    "filed_at": "2026-10-01T12:53:44.636514+00:00"
+  },
+  {
+    "repo": "drawmeanelephant/oliver",
+    "title": "Keep Cooklang block comments opaque across blank-line step boundaries",
+    "url": "https://github.com/drawmeanelephant/oliver/issues/133",
+    "body_file": "issues/oliver-block-comments.md",
+    "card": "09-oliver",
+    "filed_at": "2026-10-01T12:58:36.072441+00:00"
+  },
+  {
+    "repo": "drawmeanelephant/oliver",
+    "title": "Preserve Cooklang canonical semantic fixed points for line-split literal tokens",
+    "url": "https://github.com/drawmeanelephant/oliver/issues/134",
+    "body_file": "issues/oliver-canonical-fixed-point.md",
+    "card": "09-oliver",
+    "filed_at": "2026-10-01T12:58:37.411360+00:00"
+  },
+  {
+    "repo": "drawmeanelephant/boris-migration-lab",
+    "title": "Repair standalone README links and former tools ownership language",
+    "url": "https://github.com/drawmeanelephant/boris-migration-lab/issues/20",
+    "body_file": "issues/migration-lab-readme.md",
+    "card": "11-hygiene",
+    "filed_at": "2026-10-01T12:58:38.878332+00:00"
+  },
+  {
+    "repo": "drawmeanelephant/solipsist",
+    "title": "Document the macOS 27 app floor separately from the macOS 26 harness",
+    "url": "https://github.com/drawmeanelephant/solipsist/issues/304",
+    "body_file": "issues/solipsist-macos-floor.md",
+    "card": "11-hygiene",
+    "filed_at": "2026-10-01T12:58:39.746208+00:00"
+  },
+  {
+    "repo": "drawmeanelephant/drawmeanelephant.com",
+    "title": "Align README deployment instructions with the current Cloudflare workflow",
+    "url": "https://github.com/drawmeanelephant/drawmeanelephant.com/issues/11",
+    "body_file": "issues/elephant-deployment-docs.md",
+    "card": "11-hygiene",
+    "filed_at": "2026-10-01T12:58:40.777458+00:00"
+  },
+  {
+    "repo": "drawmeanelephant/z.filed.fyi",
+    "title": "Point the README generator link at the la-famille repository",
+    "url": "https://github.com/drawmeanelephant/z.filed.fyi/issues/5",
+    "body_file": "issues/z-guide-generator-link.md",
+    "card": "11-hygiene",
+    "filed_at": "2026-10-01T12:58:41.941299+00:00"
+  },
+  {
+    "repo": "drawmeanelephant/boris",
+    "title": "Proposal: compiler-owned canonical, OpenGraph and Twitter cards in {{head}}",
+    "url": "https://github.com/drawmeanelephant/boris/issues/1015",
+    "body_file": "issues/boris-social-metadata.md",
+    "card": "01-boris",
+    "filed_at": "2026-10-01T13:10:19.239999+00:00"
+  }
+]

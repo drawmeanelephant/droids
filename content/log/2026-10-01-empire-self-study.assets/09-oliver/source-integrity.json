@@ -1,0 +1,22 @@
+{
+  "source": {
+    "files_compared_to_archive": 947,
+    "changed": [],
+    "archive_sha256": "748eca7f6b7ab6ce0ca873532161771b7387613433328dc5d3c460959678b34d"
+  },
+  "textile": {
+    "files_compared_to_archive": 44,
+    "changed": [],
+    "archive_sha256": "f95951ca1fc6eca95e67bdfee1803c033d7f43c39339f5a93cb344934243009e"
+  },
+  "bindings": {
+    "files_compared_to_archive": 65,
+    "changed": [],
+    "archive_sha256": "32283e5f221f9f6c5cdbc6d5f96c8d8b77e1cc349b1802fcd826101789a4c62c"
+  },
+  "cooklang-rs": {
+    "files_compared_to_archive": 108,
+    "changed": [],
+    "archive_sha256": "1adeaa725cc1554020e83a4a9942c02911ee971e100834cbfe50449030696b69"
+  }
+}

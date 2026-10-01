@@ -8,7 +8,7 @@
       "name": "public",
       "output": "dist",
       "public": true,
-      "theme": "lab"
+      "theme": "manila"
     }
   ]
 }

@@ -1,0 +1,39 @@
+{
+  "input": "@x{\n}",
+  "serialized": "@x{ }\n",
+  "serialized_twice": "@x{}\n",
+  "original": {
+    "frontmatter": null,
+    "metadata": null,
+    "blocks": [
+      {
+        "kind": "step",
+        "parts": [
+          {
+            "kind": "text",
+            "text": "@x{ }"
+          }
+        ]
+      }
+    ]
+  },
+  "reparsed": {
+    "frontmatter": null,
+    "metadata": null,
+    "blocks": [
+      {
+        "kind": "step",
+        "parts": [
+          {
+            "kind": "ingredient",
+            "name": "x",
+            "quantity": "",
+            "units": "",
+            "preparation": null
+          }
+        ]
+      }
+    ]
+  },
+  "total_minimization_comparisons": 74
+}

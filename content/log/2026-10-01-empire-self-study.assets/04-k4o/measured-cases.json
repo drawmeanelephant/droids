@@ -1,0 +1,2037 @@
+{
+  "observed_at": "2026-10-01",
+  "k4o_sha": "59f88233589d2643ba5b4f380e3db70664bba2b3",
+  "oracle": {
+    "package": "knap",
+    "version": "0.6.0",
+    "node": "22.23.2",
+    "source": "https://registry.npmjs.org/knap/-/knap-0.6.0.tgz",
+    "integrity": "sha512-FpuNFQ67rrgbZu3prheLA05/ND0gdHchRBC43Abn5CmROwn8XdYdar5+fRcylN/jrDnSNKj3aFdg92qvQJbYZA==",
+    "dependency": {
+      "package": "dayjs",
+      "version": "1.11.23"
+    }
+  },
+  "renderer": {
+    "package": "oliver",
+    "version": "1.1.0",
+    "sha": "a45aa5ede557ea7cf7de727bdba61c1f80af544b",
+    "dialect": "CommonMark 0.31.2",
+    "raw_html": "allowed",
+    "gfm_tables": false
+  },
+  "cases": [
+    {
+      "name": "raw-punctuation",
+      "classification": "raw-interpolation",
+      "template": "{{ text }}",
+      "data": {
+        "text": "*_[x]<>\\`#-+"
+      },
+      "oracle_template": "{{ text }}",
+      "format": "markdown",
+      "knap": {
+        "exit_code": 0,
+        "stdout": "*_[x]<>\\`#-+",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<p>*_[x]&lt;&gt;`#-+</p>\n",
+          "stderr": ""
+        }
+      },
+      "k4o": {
+        "exit_code": 0,
+        "stdout": "*_[x]<>\\`#-+",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<p>*_[x]&lt;&gt;`#-+</p>\n",
+          "stderr": ""
+        }
+      },
+      "exact_stdout_and_status_parity": true,
+      "verification": "executed",
+      "expected_oracle": {
+        "exit_code": 0,
+        "stdout": "*_[x]<>\\`#-+"
+      },
+      "recommended_lane": "exact-oracle-parity"
+    },
+    {
+      "name": "bold-punctuation",
+      "classification": "escaping-phrase",
+      "template": "{{ text | bold }}",
+      "data": {
+        "text": "*_[x]<>\\`#-+"
+      },
+      "oracle_template": "{{ text | bold }}",
+      "format": "markdown",
+      "knap": {
+        "exit_code": 0,
+        "stdout": "***_[x]<>\\`#-+**",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<p>*<strong>_[x]&lt;&gt;`#-+</strong></p>\n",
+          "stderr": ""
+        }
+      },
+      "k4o": {
+        "exit_code": 0,
+        "stdout": "**\\*\\_\\[x\\]\\<\\>\\\\\\`#-+**",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<p><strong>*_[x]&lt;&gt;\\`#-+</strong></p>\n",
+          "stderr": ""
+        }
+      },
+      "exact_stdout_and_status_parity": false,
+      "verification": "executed",
+      "expected_oracle": {
+        "exit_code": 0,
+        "stdout": "***_[x]<>\\`#-+**"
+      },
+      "recommended_lane": "recorded-divergence; explicit compatibility or rendering-policy decision"
+    },
+    {
+      "name": "raw-entities",
+      "classification": "raw-interpolation",
+      "template": "{{ text }}",
+      "data": {
+        "text": "&amp; &#x41; &bogus; &"
+      },
+      "oracle_template": "{{ text }}",
+      "format": "markdown",
+      "knap": {
+        "exit_code": 0,
+        "stdout": "&amp; &#x41; &bogus; &",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<p>&amp; A &amp;bogus; &amp;</p>\n",
+          "stderr": ""
+        }
+      },
+      "k4o": {
+        "exit_code": 0,
+        "stdout": "&amp; &#x41; &bogus; &",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<p>&amp; A &amp;bogus; &amp;</p>\n",
+          "stderr": ""
+        }
+      },
+      "exact_stdout_and_status_parity": true,
+      "verification": "executed",
+      "expected_oracle": {
+        "exit_code": 0,
+        "stdout": "&amp; &#x41; &bogus; &"
+      },
+      "recommended_lane": "exact-oracle-parity"
+    },
+    {
+      "name": "bold-entities",
+      "classification": "escaping-phrase",
+      "template": "{{ text | bold }}",
+      "data": {
+        "text": "&amp; &#x41; &bogus; &"
+      },
+      "oracle_template": "{{ text | bold }}",
+      "format": "markdown",
+      "knap": {
+        "exit_code": 0,
+        "stdout": "**&amp; &#x41; &bogus; &**",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<p><strong>&amp; A &amp;bogus; &amp;</strong></p>\n",
+          "stderr": ""
+        }
+      },
+      "k4o": {
+        "exit_code": 0,
+        "stdout": "**&amp;amp; &amp;#x41; &amp;bogus; &amp;**",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<p><strong>&amp;amp; &amp;#x41; &amp;bogus; &amp;</strong></p>\n",
+          "stderr": ""
+        }
+      },
+      "exact_stdout_and_status_parity": false,
+      "verification": "executed",
+      "expected_oracle": {
+        "exit_code": 0,
+        "stdout": "**&amp; &#x41; &bogus; &**"
+      },
+      "recommended_lane": "recorded-divergence; explicit compatibility or rendering-policy decision"
+    },
+    {
+      "name": "raw-html",
+      "classification": "raw-interpolation",
+      "template": "{{ text }}",
+      "data": {
+        "text": "<em>raw</em>"
+      },
+      "oracle_template": "{{ text }}",
+      "format": "markdown",
+      "knap": {
+        "exit_code": 0,
+        "stdout": "<em>raw</em>",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<p><em>raw</em></p>\n",
+          "stderr": ""
+        }
+      },
+      "k4o": {
+        "exit_code": 0,
+        "stdout": "<em>raw</em>",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<p><em>raw</em></p>\n",
+          "stderr": ""
+        }
+      },
+      "exact_stdout_and_status_parity": true,
+      "verification": "executed",
+      "expected_oracle": {
+        "exit_code": 0,
+        "stdout": "<em>raw</em>"
+      },
+      "recommended_lane": "exact-oracle-parity"
+    },
+    {
+      "name": "bold-html",
+      "classification": "escaping-phrase",
+      "template": "{{ text | bold }}",
+      "data": {
+        "text": "<em>raw</em>"
+      },
+      "oracle_template": "{{ text | bold }}",
+      "format": "markdown",
+      "knap": {
+        "exit_code": 0,
+        "stdout": "**<em>raw</em>**",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<p><strong><em>raw</em></strong></p>\n",
+          "stderr": ""
+        }
+      },
+      "k4o": {
+        "exit_code": 0,
+        "stdout": "**\\<em\\>raw\\</em\\>**",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<p><strong>&lt;em&gt;raw&lt;/em&gt;</strong></p>\n",
+          "stderr": ""
+        }
+      },
+      "exact_stdout_and_status_parity": false,
+      "verification": "executed",
+      "expected_oracle": {
+        "exit_code": 0,
+        "stdout": "**<em>raw</em>**"
+      },
+      "recommended_lane": "recorded-divergence; explicit compatibility or rendering-policy decision"
+    },
+    {
+      "name": "raw-unicode",
+      "classification": "raw-interpolation",
+      "template": "{{ text }}",
+      "data": {
+        "text": "café é 日本語 🐿️"
+      },
+      "oracle_template": "{{ text }}",
+      "format": "markdown",
+      "knap": {
+        "exit_code": 0,
+        "stdout": "café é 日本語 🐿️",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<p>café é 日本語 🐿️</p>\n",
+          "stderr": ""
+        }
+      },
+      "k4o": {
+        "exit_code": 0,
+        "stdout": "café é 日本語 🐿️",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<p>café é 日本語 🐿️</p>\n",
+          "stderr": ""
+        }
+      },
+      "exact_stdout_and_status_parity": true,
+      "verification": "executed",
+      "expected_oracle": {
+        "exit_code": 0,
+        "stdout": "café é 日本語 🐿️"
+      },
+      "recommended_lane": "exact-oracle-parity"
+    },
+    {
+      "name": "bold-unicode",
+      "classification": "escaping-phrase",
+      "template": "{{ text | bold }}",
+      "data": {
+        "text": "café é 日本語 🐿️"
+      },
+      "oracle_template": "{{ text | bold }}",
+      "format": "markdown",
+      "knap": {
+        "exit_code": 0,
+        "stdout": "**café é 日本語 🐿️**",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<p><strong>café é 日本語 🐿️</strong></p>\n",
+          "stderr": ""
+        }
+      },
+      "k4o": {
+        "exit_code": 0,
+        "stdout": "**café é 日本語 🐿️**",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<p><strong>café é 日本語 🐿️</strong></p>\n",
+          "stderr": ""
+        }
+      },
+      "exact_stdout_and_status_parity": true,
+      "verification": "executed",
+      "expected_oracle": {
+        "exit_code": 0,
+        "stdout": "**café é 日本語 🐿️**"
+      },
+      "recommended_lane": "exact-oracle-parity"
+    },
+    {
+      "name": "raw-template-tags",
+      "classification": "raw-interpolation",
+      "template": "{{ text }}",
+      "data": {
+        "text": "{{ absent }} {% if x %}z{% endif %}"
+      },
+      "oracle_template": "{{ text }}",
+      "format": "markdown",
+      "knap": {
+        "exit_code": 0,
+        "stdout": "{{ absent }} {% if x %}z{% endif %}",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<p>{{ absent }} {% if x %}z{% endif %}</p>\n",
+          "stderr": ""
+        }
+      },
+      "k4o": {
+        "exit_code": 0,
+        "stdout": "{{ absent }} {% if x %}z{% endif %}",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<p>{{ absent }} {% if x %}z{% endif %}</p>\n",
+          "stderr": ""
+        }
+      },
+      "exact_stdout_and_status_parity": true,
+      "verification": "executed",
+      "expected_oracle": {
+        "exit_code": 0,
+        "stdout": "{{ absent }} {% if x %}z{% endif %}"
+      },
+      "recommended_lane": "exact-oracle-parity"
+    },
+    {
+      "name": "bold-template-tags",
+      "classification": "escaping-phrase",
+      "template": "{{ text | bold }}",
+      "data": {
+        "text": "{{ absent }} {% if x %}z{% endif %}"
+      },
+      "oracle_template": "{{ text | bold }}",
+      "format": "markdown",
+      "knap": {
+        "exit_code": 0,
+        "stdout": "**{{ absent }} {% if x %}z{% endif %}**",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<p><strong>{{ absent }} {% if x %}z{% endif %}</strong></p>\n",
+          "stderr": ""
+        }
+      },
+      "k4o": {
+        "exit_code": 0,
+        "stdout": "**{{ absent }} {% if x %}z{% endif %}**",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<p><strong>{{ absent }} {% if x %}z{% endif %}</strong></p>\n",
+          "stderr": ""
+        }
+      },
+      "exact_stdout_and_status_parity": true,
+      "verification": "executed",
+      "expected_oracle": {
+        "exit_code": 0,
+        "stdout": "**{{ absent }} {% if x %}z{% endif %}**"
+      },
+      "recommended_lane": "exact-oracle-parity"
+    },
+    {
+      "name": "literal-markdown",
+      "classification": "literal-template",
+      "template": "# H\n\n<em>raw</em>\n\n&amp;\n",
+      "data": {},
+      "oracle_template": "# H\n\n<em>raw</em>\n\n&amp;\n",
+      "format": "markdown",
+      "knap": {
+        "exit_code": 0,
+        "stdout": "# H\n\n<em>raw</em>\n\n&amp;\n",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<h1>H</h1>\n<p><em>raw</em></p>\n<p>&amp;</p>\n",
+          "stderr": ""
+        }
+      },
+      "k4o": {
+        "exit_code": 0,
+        "stdout": "# H\n\n<em>raw</em>\n\n&amp;\n",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<h1>H</h1>\n<p><em>raw</em></p>\n<p>&amp;</p>\n",
+          "stderr": ""
+        }
+      },
+      "exact_stdout_and_status_parity": true,
+      "verification": "executed",
+      "expected_oracle": {
+        "exit_code": 0,
+        "stdout": "# H\n\n<em>raw</em>\n\n&amp;\n"
+      },
+      "recommended_lane": "exact-oracle-parity"
+    },
+    {
+      "name": "bold-star",
+      "classification": "emphasis-boundary",
+      "template": "{{ text | bold }}",
+      "data": {
+        "text": "*"
+      },
+      "oracle_template": "{{ text | bold }}",
+      "format": "markdown",
+      "knap": {
+        "exit_code": 0,
+        "stdout": "*****",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<hr />\n",
+          "stderr": ""
+        }
+      },
+      "k4o": {
+        "exit_code": 0,
+        "stdout": "**\\***",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<p><strong>*</strong></p>\n",
+          "stderr": ""
+        }
+      },
+      "exact_stdout_and_status_parity": false,
+      "verification": "executed",
+      "expected_oracle": {
+        "exit_code": 0,
+        "stdout": "*****"
+      },
+      "recommended_lane": "recorded-divergence; explicit compatibility or rendering-policy decision"
+    },
+    {
+      "name": "bold-spaces",
+      "classification": "emphasis-boundary",
+      "template": "{{ text | bold }}",
+      "data": {
+        "text": "  word  "
+      },
+      "oracle_template": "{{ text | bold }}",
+      "format": "markdown",
+      "knap": {
+        "exit_code": 0,
+        "stdout": "  **word**  ",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<p><strong>word</strong></p>\n",
+          "stderr": ""
+        }
+      },
+      "k4o": {
+        "exit_code": 0,
+        "stdout": "  **word**  ",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<p><strong>word</strong></p>\n",
+          "stderr": ""
+        }
+      },
+      "exact_stdout_and_status_parity": true,
+      "verification": "executed",
+      "expected_oracle": {
+        "exit_code": 0,
+        "stdout": "  **word**  "
+      },
+      "recommended_lane": "exact-oracle-parity"
+    },
+    {
+      "name": "bold-only-spaces",
+      "classification": "emphasis-boundary",
+      "template": "{{ text | bold }}",
+      "data": {
+        "text": "   "
+      },
+      "oracle_template": "{{ text | bold }}",
+      "format": "markdown",
+      "knap": {
+        "exit_code": 0,
+        "stdout": "   ",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "k4o": {
+        "exit_code": 0,
+        "stdout": "   ",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "exact_stdout_and_status_parity": true,
+      "verification": "executed",
+      "expected_oracle": {
+        "exit_code": 0,
+        "stdout": "   "
+      },
+      "recommended_lane": "exact-oracle-parity"
+    },
+    {
+      "name": "bold-empty",
+      "classification": "emphasis-boundary",
+      "template": "{{ text | bold }}",
+      "data": {
+        "text": ""
+      },
+      "oracle_template": "{{ text | bold }}",
+      "format": "markdown",
+      "knap": {
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "k4o": {
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "exact_stdout_and_status_parity": true,
+      "verification": "executed",
+      "expected_oracle": {
+        "exit_code": 0,
+        "stdout": ""
+      },
+      "recommended_lane": "exact-oracle-parity"
+    },
+    {
+      "name": "bold-newline",
+      "classification": "emphasis-boundary",
+      "template": "{{ text | bold }}",
+      "data": {
+        "text": "a\nb"
+      },
+      "oracle_template": "{{ text | bold }}",
+      "format": "markdown",
+      "knap": {
+        "exit_code": 0,
+        "stdout": "**a\nb**",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<p><strong>a\nb</strong></p>\n",
+          "stderr": ""
+        }
+      },
+      "k4o": {
+        "exit_code": 1,
+        "stdout": "",
+        "stderr": "k4o: render error at line 1, column 11: filter 'bold' expects single-line text\n"
+      },
+      "exact_stdout_and_status_parity": false,
+      "verification": "executed",
+      "expected_oracle": {
+        "exit_code": 0,
+        "stdout": "**a\nb**"
+      },
+      "recommended_lane": "recorded-divergence; explicit compatibility or rendering-policy decision"
+    },
+    {
+      "name": "chain-italic-heading-punctuation",
+      "classification": "chain",
+      "template": "{{ text | italic | h2 }}",
+      "data": {
+        "text": "*hi*&"
+      },
+      "oracle_template": "{{ text | italic | h2 }}",
+      "format": "markdown",
+      "knap": {
+        "exit_code": 0,
+        "stdout": "## **hi*&*",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<h2><em><em>hi</em>&amp;</em></h2>\n",
+          "stderr": ""
+        }
+      },
+      "k4o": {
+        "exit_code": 0,
+        "stdout": "## *\\*hi\\*&amp;*",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<h2><em>*hi*&amp;</em></h2>\n",
+          "stderr": ""
+        }
+      },
+      "exact_stdout_and_status_parity": false,
+      "verification": "executed",
+      "expected_oracle": {
+        "exit_code": 0,
+        "stdout": "## **hi*&*"
+      },
+      "recommended_lane": "recorded-divergence; explicit compatibility or rendering-policy decision"
+    },
+    {
+      "name": "chain-code-bold",
+      "classification": "chain",
+      "template": "{{ text | code | bold }}",
+      "data": {
+        "text": "*a`b*"
+      },
+      "oracle_template": "{{ text | code | bold }}",
+      "format": "markdown",
+      "knap": {
+        "exit_code": 0,
+        "stdout": "**``*a`b*``**",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<p><strong><code>*a`b*</code></strong></p>\n",
+          "stderr": ""
+        }
+      },
+      "k4o": {
+        "exit_code": 0,
+        "stdout": "**``*a`b*``**",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<p><strong><code>*a`b*</code></strong></p>\n",
+          "stderr": ""
+        }
+      },
+      "exact_stdout_and_status_parity": true,
+      "verification": "executed",
+      "expected_oracle": {
+        "exit_code": 0,
+        "stdout": "**``*a`b*``**"
+      },
+      "recommended_lane": "exact-oracle-parity"
+    },
+    {
+      "name": "code-only-spaces",
+      "classification": "code-span",
+      "template": "{{ text | code }}",
+      "data": {
+        "text": "   "
+      },
+      "oracle_template": "{{ text | code }}",
+      "format": "markdown",
+      "knap": {
+        "exit_code": 0,
+        "stdout": "   ",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "k4o": {
+        "exit_code": 0,
+        "stdout": "`     `",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<p><code>     </code></p>\n",
+          "stderr": ""
+        }
+      },
+      "exact_stdout_and_status_parity": false,
+      "verification": "executed",
+      "expected_oracle": {
+        "exit_code": 0,
+        "stdout": "   "
+      },
+      "recommended_lane": "k4o-CommonMark-structural-regression; do not blindly copy oracle"
+    },
+    {
+      "name": "code-space-boundaries",
+      "classification": "code-span",
+      "template": "{{ text | code }}",
+      "data": {
+        "text": " a "
+      },
+      "oracle_template": "{{ text | code }}",
+      "format": "markdown",
+      "knap": {
+        "exit_code": 0,
+        "stdout": " `a` ",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<p><code>a</code></p>\n",
+          "stderr": ""
+        }
+      },
+      "k4o": {
+        "exit_code": 0,
+        "stdout": "`  a  `",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<p><code> a </code></p>\n",
+          "stderr": ""
+        }
+      },
+      "exact_stdout_and_status_parity": false,
+      "verification": "executed",
+      "expected_oracle": {
+        "exit_code": 0,
+        "stdout": " `a` "
+      },
+      "recommended_lane": "recorded-divergence; explicit compatibility or rendering-policy decision"
+    },
+    {
+      "name": "code-ticks-boundary",
+      "classification": "code-span",
+      "template": "{{ text | code }}",
+      "data": {
+        "text": "`a`"
+      },
+      "oracle_template": "{{ text | code }}",
+      "format": "markdown",
+      "knap": {
+        "exit_code": 0,
+        "stdout": "`` `a` ``",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<p><code>`a`</code></p>\n",
+          "stderr": ""
+        }
+      },
+      "k4o": {
+        "exit_code": 0,
+        "stdout": "`` `a` ``",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<p><code>`a`</code></p>\n",
+          "stderr": ""
+        }
+      },
+      "exact_stdout_and_status_parity": true,
+      "verification": "executed",
+      "expected_oracle": {
+        "exit_code": 0,
+        "stdout": "`` `a` ``"
+      },
+      "recommended_lane": "exact-oracle-parity"
+    },
+    {
+      "name": "code-long-ticks",
+      "classification": "code-span",
+      "template": "{{ text | code }}",
+      "data": {
+        "text": "a```b"
+      },
+      "oracle_template": "{{ text | code }}",
+      "format": "markdown",
+      "knap": {
+        "exit_code": 0,
+        "stdout": "````a```b````",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<p><code>a```b</code></p>\n",
+          "stderr": ""
+        }
+      },
+      "k4o": {
+        "exit_code": 0,
+        "stdout": "````a```b````",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<p><code>a```b</code></p>\n",
+          "stderr": ""
+        }
+      },
+      "exact_stdout_and_status_parity": true,
+      "verification": "executed",
+      "expected_oracle": {
+        "exit_code": 0,
+        "stdout": "````a```b````"
+      },
+      "recommended_lane": "exact-oracle-parity"
+    },
+    {
+      "name": "code-empty",
+      "classification": "code-span",
+      "template": "{{ text | code }}",
+      "data": {
+        "text": ""
+      },
+      "oracle_template": "{{ text | code }}",
+      "format": "markdown",
+      "knap": {
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "k4o": {
+        "exit_code": 0,
+        "stdout": "``",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<p>``</p>\n",
+          "stderr": ""
+        }
+      },
+      "exact_stdout_and_status_parity": false,
+      "verification": "executed",
+      "expected_oracle": {
+        "exit_code": 0,
+        "stdout": ""
+      },
+      "recommended_lane": "k4o-CommonMark-structural-regression; do not blindly copy oracle"
+    },
+    {
+      "name": "code-newline",
+      "classification": "code-span",
+      "template": "{{ text | code }}",
+      "data": {
+        "text": "a\nb"
+      },
+      "oracle_template": "{{ text | code }}",
+      "format": "markdown",
+      "knap": {
+        "exit_code": 0,
+        "stdout": "```\na\nb\n```",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<pre><code>a\nb\n</code></pre>\n",
+          "stderr": ""
+        }
+      },
+      "k4o": {
+        "exit_code": 1,
+        "stdout": "",
+        "stderr": "k4o: render error at line 1, column 11: filter 'code' expects single-line text\n"
+      },
+      "exact_stdout_and_status_parity": false,
+      "verification": "executed",
+      "expected_oracle": {
+        "exit_code": 0,
+        "stdout": "```\na\nb\n```"
+      },
+      "recommended_lane": "recorded-divergence; explicit compatibility or rendering-policy decision"
+    },
+    {
+      "name": "code-entity-html",
+      "classification": "code-span",
+      "template": "{{ text | code }}",
+      "data": {
+        "text": "&amp; <x>"
+      },
+      "oracle_template": "{{ text | code }}",
+      "format": "markdown",
+      "knap": {
+        "exit_code": 0,
+        "stdout": "`&amp; <x>`",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<p><code>&amp;amp; &lt;x&gt;</code></p>\n",
+          "stderr": ""
+        }
+      },
+      "k4o": {
+        "exit_code": 0,
+        "stdout": "`&amp; <x>`",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<p><code>&amp;amp; &lt;x&gt;</code></p>\n",
+          "stderr": ""
+        }
+      },
+      "exact_stdout_and_status_parity": true,
+      "verification": "executed",
+      "expected_oracle": {
+        "exit_code": 0,
+        "stdout": "`&amp; <x>`"
+      },
+      "recommended_lane": "exact-oracle-parity"
+    },
+    {
+      "name": "fence-ticks",
+      "classification": "code-fence-adapted",
+      "template": "{{ text | codeblock }}",
+      "data": {
+        "text": "```\nx\n```"
+      },
+      "oracle_template": "{{ text | code_block }}",
+      "format": "markdown",
+      "knap": {
+        "exit_code": 0,
+        "stdout": "````\n```\nx\n```\n````",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<pre><code>```\nx\n```\n</code></pre>\n",
+          "stderr": ""
+        }
+      },
+      "k4o": {
+        "exit_code": 0,
+        "stdout": "````\n```\nx\n```\n````",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<pre><code>```\nx\n```\n</code></pre>\n",
+          "stderr": ""
+        }
+      },
+      "exact_stdout_and_status_parity": true,
+      "verification": "executed",
+      "expected_oracle": {
+        "exit_code": 0,
+        "stdout": "````\n```\nx\n```\n````"
+      },
+      "recommended_lane": "exact-oracle-parity"
+    },
+    {
+      "name": "fence-terminal-newline",
+      "classification": "code-fence-adapted",
+      "template": "{{ text | codeblock }}",
+      "data": {
+        "text": "x\n"
+      },
+      "oracle_template": "{{ text | code_block }}",
+      "format": "markdown",
+      "knap": {
+        "exit_code": 0,
+        "stdout": "```\nx\n```\n",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<pre><code>x\n</code></pre>\n",
+          "stderr": ""
+        }
+      },
+      "k4o": {
+        "exit_code": 0,
+        "stdout": "```\nx\n\n```",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<pre><code>x\n\n</code></pre>\n",
+          "stderr": ""
+        }
+      },
+      "exact_stdout_and_status_parity": false,
+      "verification": "executed",
+      "expected_oracle": {
+        "exit_code": 0,
+        "stdout": "```\nx\n```\n"
+      },
+      "recommended_lane": "k4o-CommonMark-structural-regression; do not blindly copy oracle"
+    },
+    {
+      "name": "fence-empty",
+      "classification": "code-fence-adapted",
+      "template": "{{ text | codeblock }}",
+      "data": {
+        "text": ""
+      },
+      "oracle_template": "{{ text | code_block }}",
+      "format": "markdown",
+      "knap": {
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "k4o": {
+        "exit_code": 0,
+        "stdout": "```\n\n```",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<pre><code>\n</code></pre>\n",
+          "stderr": ""
+        }
+      },
+      "exact_stdout_and_status_parity": false,
+      "verification": "executed",
+      "expected_oracle": {
+        "exit_code": 0,
+        "stdout": ""
+      },
+      "recommended_lane": "recorded-divergence; explicit compatibility or rendering-policy decision"
+    },
+    {
+      "name": "fence-html-entity",
+      "classification": "code-fence-adapted",
+      "template": "{{ text | codeblock }}",
+      "data": {
+        "text": "<x>&amp;"
+      },
+      "oracle_template": "{{ text | code_block }}",
+      "format": "markdown",
+      "knap": {
+        "exit_code": 0,
+        "stdout": "```\n<x>&amp;\n```",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<pre><code>&lt;x&gt;&amp;amp;\n</code></pre>\n",
+          "stderr": ""
+        }
+      },
+      "k4o": {
+        "exit_code": 0,
+        "stdout": "```\n<x>&amp;\n```",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<pre><code>&lt;x&gt;&amp;amp;\n</code></pre>\n",
+          "stderr": ""
+        }
+      },
+      "exact_stdout_and_status_parity": true,
+      "verification": "executed",
+      "expected_oracle": {
+        "exit_code": 0,
+        "stdout": "```\n<x>&amp;\n```"
+      },
+      "recommended_lane": "exact-oracle-parity"
+    },
+    {
+      "name": "literal-fence",
+      "classification": "literal-template",
+      "template": "```txt\n{{ text }}\n```\n",
+      "data": {
+        "text": "<x>&"
+      },
+      "oracle_template": "```txt\n{{ text }}\n```\n",
+      "format": "markdown",
+      "knap": {
+        "exit_code": 0,
+        "stdout": "```txt\n<x>&\n```\n",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<pre><code class=\"language-txt\">&lt;x&gt;&amp;\n</code></pre>\n",
+          "stderr": ""
+        }
+      },
+      "k4o": {
+        "exit_code": 0,
+        "stdout": "```txt\n<x>&\n```\n",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<pre><code class=\"language-txt\">&lt;x&gt;&amp;\n</code></pre>\n",
+          "stderr": ""
+        }
+      },
+      "exact_stdout_and_status_parity": true,
+      "verification": "executed",
+      "expected_oracle": {
+        "exit_code": 0,
+        "stdout": "```txt\n<x>&\n```\n"
+      },
+      "recommended_lane": "exact-oracle-parity"
+    },
+    {
+      "name": "list-leading-nested",
+      "classification": "list-structure",
+      "template": "{{ items | list }}",
+      "data": {
+        "items": [
+          [
+            "child"
+          ],
+          "parent"
+        ]
+      },
+      "oracle_template": "{{ items | list }}",
+      "format": "markdown",
+      "knap": {
+        "exit_code": 0,
+        "stdout": "\t- child\n- parent",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<pre><code>- child\n</code></pre>\n<ul>\n<li>parent</li>\n</ul>\n",
+          "stderr": ""
+        }
+      },
+      "k4o": {
+        "exit_code": 0,
+        "stdout": "- child\n- parent",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<ul>\n<li>child</li>\n<li>parent</li>\n</ul>\n",
+          "stderr": ""
+        }
+      },
+      "exact_stdout_and_status_parity": false,
+      "verification": "executed",
+      "expected_oracle": {
+        "exit_code": 0,
+        "stdout": "\t- child\n- parent"
+      },
+      "recommended_lane": "recorded-divergence; explicit compatibility or rendering-policy decision"
+    },
+    {
+      "name": "list-leading-siblings",
+      "classification": "list-structure",
+      "template": "{{ items | list }}",
+      "data": {
+        "items": [
+          [
+            "one"
+          ],
+          [
+            "two"
+          ]
+        ]
+      },
+      "oracle_template": "{{ items | list }}",
+      "format": "markdown",
+      "knap": {
+        "exit_code": 0,
+        "stdout": "\t- one\n\t- two",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<pre><code>- one\n- two\n</code></pre>\n",
+          "stderr": ""
+        }
+      },
+      "k4o": {
+        "exit_code": 0,
+        "stdout": "- one\n- two",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<ul>\n<li>one</li>\n<li>two</li>\n</ul>\n",
+          "stderr": ""
+        }
+      },
+      "exact_stdout_and_status_parity": false,
+      "verification": "executed",
+      "expected_oracle": {
+        "exit_code": 0,
+        "stdout": "\t- one\n\t- two"
+      },
+      "recommended_lane": "recorded-divergence; explicit compatibility or rendering-policy decision"
+    },
+    {
+      "name": "list-multiline",
+      "classification": "list-structure",
+      "template": "{{ items | list }}",
+      "data": {
+        "items": [
+          "one\ncontinuation",
+          "two"
+        ]
+      },
+      "oracle_template": "{{ items | list }}",
+      "format": "markdown",
+      "knap": {
+        "exit_code": 0,
+        "stdout": "- one\ncontinuation\n- two",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<ul>\n<li>one\ncontinuation</li>\n<li>two</li>\n</ul>\n",
+          "stderr": ""
+        }
+      },
+      "k4o": {
+        "exit_code": 0,
+        "stdout": "- one\ncontinuation\n- two",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<ul>\n<li>one\ncontinuation</li>\n<li>two</li>\n</ul>\n",
+          "stderr": ""
+        }
+      },
+      "exact_stdout_and_status_parity": true,
+      "verification": "executed",
+      "expected_oracle": {
+        "exit_code": 0,
+        "stdout": "- one\ncontinuation\n- two"
+      },
+      "recommended_lane": "exact-oracle-parity"
+    },
+    {
+      "name": "list-blank-line",
+      "classification": "list-structure",
+      "template": "{{ items | list }}",
+      "data": {
+        "items": [
+          "one\n\ncontinuation",
+          "two"
+        ]
+      },
+      "oracle_template": "{{ items | list }}",
+      "format": "markdown",
+      "knap": {
+        "exit_code": 0,
+        "stdout": "- one\n\ncontinuation\n- two",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<ul>\n<li>one</li>\n</ul>\n<p>continuation</p>\n<ul>\n<li>two</li>\n</ul>\n",
+          "stderr": ""
+        }
+      },
+      "k4o": {
+        "exit_code": 0,
+        "stdout": "- one\n\ncontinuation\n- two",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<ul>\n<li>one</li>\n</ul>\n<p>continuation</p>\n<ul>\n<li>two</li>\n</ul>\n",
+          "stderr": ""
+        }
+      },
+      "exact_stdout_and_status_parity": true,
+      "verification": "executed",
+      "expected_oracle": {
+        "exit_code": 0,
+        "stdout": "- one\n\ncontinuation\n- two"
+      },
+      "recommended_lane": "exact-oracle-parity"
+    },
+    {
+      "name": "list-block-starts",
+      "classification": "list-structure",
+      "template": "{{ items | list }}",
+      "data": {
+        "items": [
+          "# heading",
+          "> quote",
+          "1. numbered",
+          "---",
+          "<script>"
+        ]
+      },
+      "oracle_template": "{{ items | list }}",
+      "format": "markdown",
+      "knap": {
+        "exit_code": 0,
+        "stdout": "- # heading\n- > quote\n- 1. numbered\n- ---\n- <script>",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<ul>\n<li>\n<h1>heading</h1>\n</li>\n<li>\n<blockquote>\n<p>quote</p>\n</blockquote>\n</li>\n<li>\n<ol>\n<li>numbered</li>\n</ol>\n</li>\n</ul>\n<hr />\n<ul>\n<li>\n<script>\n</li>\n</ul>\n",
+          "stderr": ""
+        }
+      },
+      "k4o": {
+        "exit_code": 0,
+        "stdout": "- \\# heading\n- \\> quote\n- 1. numbered\n- \\---\n- \\<script\\>",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<ul>\n<li># heading</li>\n<li>&gt; quote</li>\n<li>\n<ol>\n<li>numbered</li>\n</ol>\n</li>\n<li>---</li>\n<li>&lt;script&gt;</li>\n</ul>\n",
+          "stderr": ""
+        }
+      },
+      "exact_stdout_and_status_parity": false,
+      "verification": "executed",
+      "expected_oracle": {
+        "exit_code": 0,
+        "stdout": "- # heading\n- > quote\n- 1. numbered\n- ---\n- <script>"
+      },
+      "recommended_lane": "k4o-CommonMark-structural-regression; do not blindly copy oracle"
+    },
+    {
+      "name": "list-entity-unicode",
+      "classification": "list-structure",
+      "template": "{{ items | list }}",
+      "data": {
+        "items": [
+          "&amp;",
+          "café 🐿️"
+        ]
+      },
+      "oracle_template": "{{ items | list }}",
+      "format": "markdown",
+      "knap": {
+        "exit_code": 0,
+        "stdout": "- &amp;\n- café 🐿️",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<ul>\n<li>&amp;</li>\n<li>café 🐿️</li>\n</ul>\n",
+          "stderr": ""
+        }
+      },
+      "k4o": {
+        "exit_code": 0,
+        "stdout": "- &amp;amp;\n- café 🐿️",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<ul>\n<li>&amp;amp;</li>\n<li>café 🐿️</li>\n</ul>\n",
+          "stderr": ""
+        }
+      },
+      "exact_stdout_and_status_parity": false,
+      "verification": "executed",
+      "expected_oracle": {
+        "exit_code": 0,
+        "stdout": "- &amp;\n- café 🐿️"
+      },
+      "recommended_lane": "recorded-divergence; explicit compatibility or rendering-policy decision"
+    },
+    {
+      "name": "list-four-levels",
+      "classification": "list-structure",
+      "template": "{{ items | list }}",
+      "data": {
+        "items": [
+          "a",
+          [
+            "b",
+            [
+              "c",
+              [
+                "d"
+              ]
+            ]
+          ]
+        ]
+      },
+      "oracle_template": "{{ items | list }}",
+      "format": "markdown",
+      "knap": {
+        "exit_code": 0,
+        "stdout": "- a\n\t- b\n\t\t- c\n\t\t\t- d",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<ul>\n<li>a\n<ul>\n<li>b\n<ul>\n<li>c\n<ul>\n<li>d</li>\n</ul>\n</li>\n</ul>\n</li>\n</ul>\n</li>\n</ul>\n",
+          "stderr": ""
+        }
+      },
+      "k4o": {
+        "exit_code": 1,
+        "stdout": "",
+        "stderr": "k4o: render error at line 1, column 12: filter 'list' supports at most 3 levels of nesting\n"
+      },
+      "exact_stdout_and_status_parity": false,
+      "verification": "executed",
+      "expected_oracle": {
+        "exit_code": 0,
+        "stdout": "- a\n\t- b\n\t\t- c\n\t\t\t- d"
+      },
+      "recommended_lane": "recorded-divergence; explicit compatibility or rendering-policy decision"
+    },
+    {
+      "name": "numbered-ten-nested",
+      "classification": "ordered-list-adapted",
+      "template": "{{ items | numbered }}",
+      "data": {
+        "items": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9",
+          "10",
+          [
+            "child"
+          ]
+        ]
+      },
+      "oracle_template": "{{ items | list:numbered }}",
+      "format": "markdown",
+      "knap": {
+        "exit_code": 0,
+        "stdout": "1. 1\n2. 2\n3. 3\n4. 4\n5. 5\n6. 6\n7. 7\n8. 8\n9. 9\n10. 10\n\t1. child",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<ol>\n<li>1</li>\n<li>2</li>\n<li>3</li>\n<li>4</li>\n<li>5</li>\n<li>6</li>\n<li>7</li>\n<li>8</li>\n<li>9</li>\n<li>10\n<ol>\n<li>child</li>\n</ol>\n</li>\n</ol>\n",
+          "stderr": ""
+        }
+      },
+      "k4o": {
+        "exit_code": 0,
+        "stdout": "1. 1\n2. 2\n3. 3\n4. 4\n5. 5\n6. 6\n7. 7\n8. 8\n9. 9\n10. 10\n   1. child",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<ol>\n<li>1</li>\n<li>2</li>\n<li>3</li>\n<li>4</li>\n<li>5</li>\n<li>6</li>\n<li>7</li>\n<li>8</li>\n<li>9</li>\n<li>10</li>\n<li>child</li>\n</ol>\n",
+          "stderr": ""
+        }
+      },
+      "exact_stdout_and_status_parity": false,
+      "verification": "executed",
+      "expected_oracle": {
+        "exit_code": 0,
+        "stdout": "1. 1\n2. 2\n3. 3\n4. 4\n5. 5\n6. 6\n7. 7\n8. 8\n9. 9\n10. 10\n\t1. child"
+      },
+      "recommended_lane": "k4o-CommonMark-structural-regression; do not blindly copy oracle"
+    },
+    {
+      "name": "loop-blank",
+      "classification": "loop-whitespace",
+      "template": "before\n\n{% for x in xs %}{{ x }}\n\n{% endfor %}\n\nafter",
+      "data": {
+        "xs": [
+          "a",
+          "b"
+        ],
+        "yes": true,
+        "no": false
+      },
+      "oracle_template": "before\n\n{% for x in xs %}{{ x }}\n\n{% endfor %}\n\nafter",
+      "format": "markdown",
+      "knap": {
+        "exit_code": 0,
+        "stdout": "before\n\na\n\nb\n\n\nafter",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<p>before</p>\n<p>a</p>\n<p>b</p>\n<p>after</p>\n",
+          "stderr": ""
+        }
+      },
+      "k4o": {
+        "exit_code": 0,
+        "stdout": "before\n\na\n\nb\n\n\nafter",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<p>before</p>\n<p>a</p>\n<p>b</p>\n<p>after</p>\n",
+          "stderr": ""
+        }
+      },
+      "exact_stdout_and_status_parity": true,
+      "verification": "executed",
+      "expected_oracle": {
+        "exit_code": 0,
+        "stdout": "before\n\na\n\nb\n\n\nafter"
+      },
+      "recommended_lane": "exact-oracle-parity"
+    },
+    {
+      "name": "loop-standalone",
+      "classification": "loop-whitespace",
+      "template": "{% for x in xs %}\n  {{ x }}\n{% endfor %}\n",
+      "data": {
+        "xs": [
+          "a",
+          "b"
+        ],
+        "yes": true,
+        "no": false
+      },
+      "oracle_template": "{% for x in xs %}\n  {{ x }}\n{% endfor %}\n",
+      "format": "markdown",
+      "knap": {
+        "exit_code": 0,
+        "stdout": "a\n  b\n",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<p>a\nb</p>\n",
+          "stderr": ""
+        }
+      },
+      "k4o": {
+        "exit_code": 0,
+        "stdout": "  a\n  b\n",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<p>a\nb</p>\n",
+          "stderr": ""
+        }
+      },
+      "exact_stdout_and_status_parity": false,
+      "verification": "executed",
+      "expected_oracle": {
+        "exit_code": 0,
+        "stdout": "a\n  b\n"
+      },
+      "recommended_lane": "recorded-divergence; explicit compatibility or rendering-policy decision"
+    },
+    {
+      "name": "loop-adjacent",
+      "classification": "loop-whitespace",
+      "template": "{% for x in xs %}{{ x }} {% endfor %}{% if yes %}ok{% endif %}",
+      "data": {
+        "xs": [
+          "a",
+          "b"
+        ],
+        "yes": true,
+        "no": false
+      },
+      "oracle_template": "{% for x in xs %}{{ x }} {% endfor %}{% if yes %}ok{% endif %}",
+      "format": "markdown",
+      "knap": {
+        "exit_code": 0,
+        "stdout": "a \nbok",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<p>a\nbok</p>\n",
+          "stderr": ""
+        }
+      },
+      "k4o": {
+        "exit_code": 0,
+        "stdout": "a \nb ok",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<p>a\nb ok</p>\n",
+          "stderr": ""
+        }
+      },
+      "exact_stdout_and_status_parity": false,
+      "verification": "executed",
+      "expected_oracle": {
+        "exit_code": 0,
+        "stdout": "a \nbok"
+      },
+      "recommended_lane": "recorded-divergence; explicit compatibility or rendering-policy decision"
+    },
+    {
+      "name": "loop-empty-bodies",
+      "classification": "loop-whitespace",
+      "template": "A{% for x in xs %}{% if no %}x{% endif %}{% endfor %}B",
+      "data": {
+        "xs": [
+          "a",
+          "b"
+        ],
+        "yes": true,
+        "no": false
+      },
+      "oracle_template": "A{% for x in xs %}{% if no %}x{% endif %}{% endfor %}B",
+      "format": "markdown",
+      "knap": {
+        "exit_code": 0,
+        "stdout": "AB",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<p>AB</p>\n",
+          "stderr": ""
+        }
+      },
+      "k4o": {
+        "exit_code": 0,
+        "stdout": "A\nB",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<p>A\nB</p>\n",
+          "stderr": ""
+        }
+      },
+      "exact_stdout_and_status_parity": false,
+      "verification": "executed",
+      "expected_oracle": {
+        "exit_code": 0,
+        "stdout": "AB"
+      },
+      "recommended_lane": "recorded-divergence; explicit compatibility or rendering-policy decision"
+    },
+    {
+      "name": "link-parens",
+      "classification": "link-direction-adapted",
+      "template": "{{ label | link:url }}",
+      "data": {
+        "label": "A [B]",
+        "url": "https://example.com/a(b)"
+      },
+      "oracle_template": "{{ url | link:label }}",
+      "format": "markdown",
+      "knap": {
+        "exit_code": 0,
+        "stdout": "[A \\[B\\]](https://example.com/a%28b%29)",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<p><a href=\"https://example.com/a%28b%29\">A [B]</a></p>\n",
+          "stderr": ""
+        }
+      },
+      "k4o": {
+        "exit_code": 0,
+        "stdout": "[A \\[B\\]](https://example.com/a\\(b\\))",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<p><a href=\"https://example.com/a(b)\">A [B]</a></p>\n",
+          "stderr": ""
+        }
+      },
+      "exact_stdout_and_status_parity": false,
+      "verification": "executed",
+      "expected_oracle": {
+        "exit_code": 0,
+        "stdout": "[A \\[B\\]](https://example.com/a%28b%29)"
+      },
+      "recommended_lane": "recorded-divergence; explicit compatibility or rendering-policy decision"
+    },
+    {
+      "name": "link-ampersand",
+      "classification": "link-direction-adapted",
+      "template": "{{ label | link:url }}",
+      "data": {
+        "label": "A&B",
+        "url": "https://example.com/?a=1&b=2"
+      },
+      "oracle_template": "{{ url | link:label }}",
+      "format": "markdown",
+      "knap": {
+        "exit_code": 0,
+        "stdout": "[A&amp;B](https://example.com/?a=1&b=2)",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<p><a href=\"https://example.com/?a=1&amp;b=2\">A&amp;B</a></p>\n",
+          "stderr": ""
+        }
+      },
+      "k4o": {
+        "exit_code": 0,
+        "stdout": "[A&amp;B](https://example.com/?a=1&b=2)",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<p><a href=\"https://example.com/?a=1&amp;b=2\">A&amp;B</a></p>\n",
+          "stderr": ""
+        }
+      },
+      "exact_stdout_and_status_parity": true,
+      "verification": "executed",
+      "expected_oracle": {
+        "exit_code": 0,
+        "stdout": "[A&amp;B](https://example.com/?a=1&b=2)"
+      },
+      "recommended_lane": "exact-oracle-parity"
+    },
+    {
+      "name": "link-html-entity",
+      "classification": "link-direction-adapted",
+      "template": "{{ label | link:url }}",
+      "data": {
+        "label": "<em>&amp;",
+        "url": "https://example.com/"
+      },
+      "oracle_template": "{{ url | link:label }}",
+      "format": "markdown",
+      "knap": {
+        "exit_code": 0,
+        "stdout": "[\\<em\\>&amp;amp;](https://example.com/)",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<p><a href=\"https://example.com/\">&lt;em&gt;&amp;amp;</a></p>\n",
+          "stderr": ""
+        }
+      },
+      "k4o": {
+        "exit_code": 0,
+        "stdout": "[\\<em\\>&amp;amp;](https://example.com/)",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<p><a href=\"https://example.com/\">&lt;em&gt;&amp;amp;</a></p>\n",
+          "stderr": ""
+        }
+      },
+      "exact_stdout_and_status_parity": true,
+      "verification": "executed",
+      "expected_oracle": {
+        "exit_code": 0,
+        "stdout": "[\\<em\\>&amp;amp;](https://example.com/)"
+      },
+      "recommended_lane": "exact-oracle-parity"
+    },
+    {
+      "name": "link-angle",
+      "classification": "link-direction-adapted",
+      "template": "{{ label | link:url }}",
+      "data": {
+        "label": "name",
+        "url": "https://example.com/a<b>"
+      },
+      "oracle_template": "{{ url | link:label }}",
+      "format": "markdown",
+      "knap": {
+        "exit_code": 0,
+        "stdout": "[name](https://example.com/a%3Cb%3E)",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<p><a href=\"https://example.com/a%3Cb%3E\">name</a></p>\n",
+          "stderr": ""
+        }
+      },
+      "k4o": {
+        "exit_code": 0,
+        "stdout": "[name](https://example.com/a<b>)",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<p><a href=\"https://example.com/a%3Cb%3E\">name</a></p>\n",
+          "stderr": ""
+        }
+      },
+      "exact_stdout_and_status_parity": false,
+      "verification": "executed",
+      "expected_oracle": {
+        "exit_code": 0,
+        "stdout": "[name](https://example.com/a%3Cb%3E)"
+      },
+      "recommended_lane": "recorded-divergence; explicit compatibility or rendering-policy decision"
+    },
+    {
+      "name": "link-unicode",
+      "classification": "link-direction-adapted",
+      "template": "{{ label | link:url }}",
+      "data": {
+        "label": "日本語",
+        "url": "https://example.com/é"
+      },
+      "oracle_template": "{{ url | link:label }}",
+      "format": "markdown",
+      "knap": {
+        "exit_code": 0,
+        "stdout": "[日本語](https://example.com/é)",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<p><a href=\"https://example.com/%C3%A9\">日本語</a></p>\n",
+          "stderr": ""
+        }
+      },
+      "k4o": {
+        "exit_code": 0,
+        "stdout": "[日本語](https://example.com/é)",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<p><a href=\"https://example.com/%C3%A9\">日本語</a></p>\n",
+          "stderr": ""
+        }
+      },
+      "exact_stdout_and_status_parity": true,
+      "verification": "executed",
+      "expected_oracle": {
+        "exit_code": 0,
+        "stdout": "[日本語](https://example.com/é)"
+      },
+      "recommended_lane": "exact-oracle-parity"
+    },
+    {
+      "name": "table-gfm-basic",
+      "classification": "gfm-table",
+      "template": "{{ rows | table }}",
+      "data": {
+        "rows": [
+          [
+            "H"
+          ],
+          [
+            "x"
+          ]
+        ]
+      },
+      "oracle_template": "{{ rows | table }}",
+      "format": "gfm",
+      "knap": {
+        "exit_code": 0,
+        "stdout": "|  |\n| - |\n| H |\n| x |",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<p>|  |\n| - |\n| H |\n| x |</p>\n",
+          "stderr": ""
+        }
+      },
+      "k4o": {
+        "exit_code": 0,
+        "stdout": "|  |\n| - |\n| H |\n| x |",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<p>|  |\n| - |\n| H |\n| x |</p>\n",
+          "stderr": ""
+        }
+      },
+      "exact_stdout_and_status_parity": true,
+      "verification": "executed",
+      "expected_oracle": {
+        "exit_code": 0,
+        "stdout": "|  |\n| - |\n| H |\n| x |"
+      },
+      "recommended_lane": "exact-oracle-parity"
+    },
+    {
+      "name": "table-commonmark-basic",
+      "classification": "commonmark-html-table",
+      "template": "{{ rows | table }}",
+      "data": {
+        "rows": [
+          [
+            "H"
+          ],
+          [
+            "x"
+          ]
+        ]
+      },
+      "oracle_template": "{{ rows | table }}",
+      "format": "markdown",
+      "knap": {
+        "exit_code": 0,
+        "stdout": "|  |\n| - |\n| H |\n| x |",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<p>|  |\n| - |\n| H |\n| x |</p>\n",
+          "stderr": ""
+        }
+      },
+      "k4o": {
+        "exit_code": 0,
+        "stdout": "<table>\n<thead>\n<tr><th>H</th></tr>\n</thead>\n<tbody>\n<tr><td>x</td></tr>\n</tbody>\n</table>",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<table>\n<thead>\n<tr><th>H</th></tr>\n</thead>\n<tbody>\n<tr><td>x</td></tr>\n</tbody>\n</table>\n",
+          "stderr": ""
+        }
+      },
+      "exact_stdout_and_status_parity": false,
+      "verification": "executed",
+      "expected_oracle": {
+        "exit_code": 0,
+        "stdout": "|  |\n| - |\n| H |\n| x |"
+      },
+      "recommended_lane": "recorded-divergence; explicit compatibility or rendering-policy decision"
+    },
+    {
+      "name": "table-gfm-escaping",
+      "classification": "gfm-table",
+      "template": "{{ rows | table }}",
+      "data": {
+        "rows": [
+          [
+            "&amp;",
+            "<em>"
+          ],
+          [
+            "*",
+            "é"
+          ]
+        ]
+      },
+      "oracle_template": "{{ rows | table }}",
+      "format": "gfm",
+      "knap": {
+        "exit_code": 0,
+        "stdout": "|  |  |\n| - | - |\n| &amp; | <em> |\n| * | é |",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<p>|  |  |\n| - | - |\n| &amp; | <em> |\n| * | é |</p>\n",
+          "stderr": ""
+        }
+      },
+      "k4o": {
+        "exit_code": 0,
+        "stdout": "|  |  |\n| - | - |\n| &amp;amp; | \\<em\\> |\n| \\* | é |",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<p>|  |  |\n| - | - |\n| &amp;amp; | &lt;em&gt; |\n| * | é |</p>\n",
+          "stderr": ""
+        }
+      },
+      "exact_stdout_and_status_parity": false,
+      "verification": "executed",
+      "expected_oracle": {
+        "exit_code": 0,
+        "stdout": "|  |  |\n| - | - |\n| &amp; | <em> |\n| * | é |"
+      },
+      "recommended_lane": "recorded-divergence; explicit compatibility or rendering-policy decision"
+    },
+    {
+      "name": "table-commonmark-escaping",
+      "classification": "commonmark-html-table",
+      "template": "{{ rows | table }}",
+      "data": {
+        "rows": [
+          [
+            "&amp;",
+            "<em>"
+          ],
+          [
+            "*",
+            "é"
+          ]
+        ]
+      },
+      "oracle_template": "{{ rows | table }}",
+      "format": "markdown",
+      "knap": {
+        "exit_code": 0,
+        "stdout": "|  |  |\n| - | - |\n| &amp; | <em> |\n| * | é |",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<p>|  |  |\n| - | - |\n| &amp; | <em> |\n| * | é |</p>\n",
+          "stderr": ""
+        }
+      },
+      "k4o": {
+        "exit_code": 0,
+        "stdout": "<table>\n<thead>\n<tr><th>&amp;amp;</th><th>&lt;em&gt;</th></tr>\n</thead>\n<tbody>\n<tr><td>*</td><td>é</td></tr>\n</tbody>\n</table>",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<table>\n<thead>\n<tr><th>&amp;amp;</th><th>&lt;em&gt;</th></tr>\n</thead>\n<tbody>\n<tr><td>*</td><td>é</td></tr>\n</tbody>\n</table>\n",
+          "stderr": ""
+        }
+      },
+      "exact_stdout_and_status_parity": false,
+      "verification": "executed",
+      "expected_oracle": {
+        "exit_code": 0,
+        "stdout": "|  |  |\n| - | - |\n| &amp; | <em> |\n| * | é |"
+      },
+      "recommended_lane": "recorded-divergence; explicit compatibility or rendering-policy decision"
+    },
+    {
+      "name": "blockquote-newline",
+      "classification": "phrase-validation",
+      "template": "{{ text | blockquote }}",
+      "data": {
+        "text": "a\n\nb"
+      },
+      "oracle_template": "{{ text | blockquote }}",
+      "format": "markdown",
+      "knap": {
+        "exit_code": 0,
+        "stdout": "> a\n> \n> b",
+        "stderr": "",
+        "commonmark_html": {
+          "exit_code": 0,
+          "stdout": "<blockquote>\n<p>a</p>\n<p>b</p>\n</blockquote>\n",
+          "stderr": ""
+        }
+      },
+      "k4o": {
+        "exit_code": 1,
+        "stdout": "",
+        "stderr": "k4o: render error at line 1, column 11: filter 'blockquote' expects single-line text\n"
+      },
+      "exact_stdout_and_status_parity": false,
+      "verification": "executed",
+      "expected_oracle": {
+        "exit_code": 0,
+        "stdout": "> a\n> \n> b"
+      },
+      "recommended_lane": "recorded-divergence; explicit compatibility or rendering-policy decision"
+    }
+  ],
+  "warning": "Exploratory corpus, not a parity gate: 27 observed differences are not 27 defects. Oracle stdout is Markdown, not an HTML oracle. HTML is independently measured with pinned Oliver in raw-html allowed mode; no GFM parser was run."
+}

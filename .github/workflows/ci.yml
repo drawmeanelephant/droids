@@ -17,7 +17,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/setup-boris
       - name: Validate
-        run: boris validate --input content --theme lab --layout-rule default id:index lab/layouts/trunk.html
+        run: boris validate --input content --theme manila --layout-rule default id:index manila/layouts/trunk.html
 
   build:
     name: Build site
@@ -29,8 +29,8 @@ jobs:
       - name: Build HTML
         run: |
           boris build --input content --html-dir dist \
-            --theme lab --sitemap --site-url https://droids.filed.fyi/ \
-            --layout-rule default id:index lab/layouts/trunk.html \
+            --theme manila --sitemap --site-url https://droids.filed.fyi/ \
+            --layout-rule default id:index manila/layouts/trunk.html \
             --static-dir static
       - name: Build RSS
         run: |
@@ -51,8 +51,8 @@ jobs:
       - name: Rebuild to verify reproducibility
         run: |
           boris build --input content --html-dir dist \
-            --theme lab --sitemap --site-url https://droids.filed.fyi/ \
-            --layout-rule default id:index lab/layouts/trunk.html \
+            --theme manila --sitemap --site-url https://droids.filed.fyi/ \
+            --layout-rule default id:index manila/layouts/trunk.html \
             --static-dir static
       - name: Check dist has content
         run: |
