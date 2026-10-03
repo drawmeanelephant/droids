@@ -7,7 +7,7 @@ summary: The site constellation under filed.fyi — squirrel the link-log, muse 
 published_at: 2026-09-27T19:24:08Z
 ---
 
-# The filed.fyi constellation
+<h1 id="the-filedfyi-constellation" class="project-title"><span class="mascot-icon" data-mascot="filed-robot" data-renderer="svg" aria-hidden="true" data-boris-search-exclude><img src="../assets/icons/filed-robot.svg" width="40" height="40" alt=""><span class="mascot-glyph" hidden>&#xE009;</span></span><span>The filed.fyi constellation</span></h1>
 
 The family of sites on the filed.fyi domain, all built with
 [[projects/boris]]:
