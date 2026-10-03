@@ -54,6 +54,24 @@ boris watch --input content --html-dir dist \
 - Type is [Geist and Geist Mono](https://github.com/vercel/geist-font),
   self-hosted under the SIL Open Font License
   (`manila/assets/fonts/OFL.txt`).
+- Small project-page marks use approved SVG artwork and native Virelai
+  color glyphs, progressively loaded with SVG fallbacks. The owner approved
+  these assets for serving on droids.filed.fyi only; they are **not** under
+  Geist's licence. Source pins, hashes, permissions and lossless conversion
+  instructions live in `manila/assets/icons/README.md`.
+
+Theme regressions run without npm dependencies, using Node's built-in
+test runner (Node 22 or newer):
+
+```sh
+node --test tests/*.test.cjs
+```
+
+These cover search state, loading failures/retries, publication-base
+links, small-label contrast in all three modes, and mascot loading,
+fallbacks, glyph mapping and asset hashes. CI also verifies every original
+font table with `python tools/build-mascots.py --check`. Browser layout and
+accessibility checks are still needed for a visual review.
 
 ## Deployment
 

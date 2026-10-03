@@ -25,6 +25,23 @@
   font-style: normal;
   font-display: swap;
 }
+/* Native color glyphs only. Body, chrome, logo and favicon stay unchanged. */
+@font-face {
+  font-family: "Virelai Mascots";
+  src: url("../fonts/VirelaiMascots-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+E002-E00A;
+}
+@font-face {
+  font-family: "Virelai Sexiburger";
+  src: url("../fonts/VirelaiSans-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+E001;
+}
 
 /* ---------- tokens ---------- */
 
@@ -53,7 +70,7 @@ html[data-mode="dark"] {
   --ink: #d6d0c9;
   --bright: #f3efe9;
   --muted: #968e86;
-  --faint: #6f6861;
+  --faint: #8f867d;
   --accent: #e2b86b;
   --signal: #ee6018;
   --ok: #a0ca92;
@@ -74,9 +91,9 @@ html[data-mode="light"] {
   --ink: #35312c;
   --bright: #141210;
   --muted: #6b635b;
-  --faint: #8f867d;
+  --faint: #6d645c;
   --accent: #8a5a0b;
-  --signal: #d4520f;
+  --signal: #b13f08;
   --ok: #3d7631;
   --bad: #b3401f;
   --sel: rgba(138, 90, 11, .18);
@@ -95,7 +112,7 @@ html[data-mode="pride"] {
   --ink: #e5ddf5;
   --bright: #fcf8ff;
   --muted: #a89bc9;
-  --faint: #7d709f;
+  --faint: #9b8bb7;
   --accent: #8ad7ff;
   --signal: #ff6fb5;
   --ok: #8affc1;
@@ -294,10 +311,10 @@ html[data-mode="pride"] .bar { border-bottom: 2px solid transparent; border-imag
 
 @media (max-width: 47.99rem) {
   .bar__nav { flex-basis: calc(100% - 2.5rem); }
-  .bar__nav .site-nav__trunk > ul { flex-wrap: nowrap; gap: 0; overflow-x: auto; margin-inline: -.32rem; scrollbar-width: none; }
+  .bar__nav .site-nav__trunk > ul { flex-wrap: wrap; gap: .15rem 0; margin-inline: -.32rem; }
   .bar__nav .site-nav__satellite > a { gap: .35rem; padding-inline: .32rem; font-size: .66rem; letter-spacing: .05em; }
   .bar__tools { margin-left: 0; width: 100%; }
-  .find { flex: 1 1 auto; }
+  .find { flex: 1 1 auto; min-width: 0; gap: .5rem; }
 }
 
 /* ---------- desk: record + rail ---------- */
@@ -480,6 +497,48 @@ html[data-mode="pride"] .record__body h2::before {
 .record__body hr { height: 1px; margin: 2.75rem 0; border: 0; background: var(--rule); }
 
 .record__body img { max-width: 100%; height: auto; border: 1px solid var(--rule); border-radius: var(--r-md); }
+
+/* ---------- supporting project marks ---------- */
+
+.project-title { display: flex; align-items: center; gap: .75rem; }
+.project-title > span:last-child { min-width: 0; }
+.mascot-icon {
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  width: 1em;
+  height: 1em;
+  font-size: 2.5rem;
+  vertical-align: middle;
+}
+.record__body .mascot-icon img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border: 0;
+  border-radius: 0;
+}
+.mascot-glyph {
+  /* Native advances include sidebearings slightly wider than the icon box. */
+  font: 400 .95em/1 "Virelai Mascots";
+  font-synthesis: none;
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+[data-mascot="sexiburger"] .mascot-glyph { font-family: "Virelai Sexiburger"; }
+.mascot-samples {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
+  gap: .75rem;
+  margin: 1.5rem 0;
+}
+.mascot-sample { margin: 0; padding: 1rem; border: 1px solid var(--rule); border-radius: var(--r-md); }
+.mascot-sample figcaption { color: var(--bright); font-size: .9rem; font-weight: 500; }
+.mascot-sample__pair { display: flex; justify-content: space-around; gap: .5rem; margin-top: 1rem; }
+.mascot-sample__render { text-align: center; }
+.mascot-sample .mascot-icon { font-size: 3rem; }
+.mascot-sample small { display: block; margin-top: .6rem; color: var(--muted); font: 400 .66rem/1.4 var(--mono); }
 
 .record__body dt { color: var(--bright); font-weight: 500; }
 .record__body dd { margin: 0 0 .75rem 1.1rem; }
@@ -828,6 +887,18 @@ html[data-mode="pride"] .foot { border-top: 2px solid transparent; border-image:
 }
 .palette__prompt input::placeholder { color: var(--faint); }
 .palette__prompt input::-webkit-search-cancel-button { display: none; }
+.palette__close {
+  flex: none;
+  width: 2rem;
+  min-height: 2rem;
+  border: 1px solid var(--rule-2);
+  border-radius: var(--r-sm);
+  background: var(--raised);
+  color: var(--muted);
+  font: 400 1.15rem/1 var(--mono);
+  cursor: pointer;
+}
+.palette__close:hover { color: var(--bright); }
 .palette__results { flex: 1; min-height: 0; margin: 0; padding: .35rem; overflow-y: auto; list-style: none; }
 .palette__results:empty { display: none; }
 .palette__results a { display: block; padding: .65rem .75rem; border-radius: var(--r-md); color: inherit; text-decoration: none; }
@@ -840,7 +911,7 @@ html[data-mode="pride"] .foot { border-top: 2px solid transparent; border-image:
 .pr__t mark,
 .pr__s mark { background: none; color: var(--accent); }
 .pr__t mark { text-decoration: underline 1px; text-underline-offset: .2em; }
-.palette__empty { padding: .75rem; color: var(--muted); font: 400 .78rem/1.4 var(--mono); }
+.palette__status { margin: 0; padding: .75rem 1.1rem; color: var(--muted); font: 400 .78rem/1.4 var(--mono); }
 .palette__hint {
   display: flex;
   flex-wrap: wrap;

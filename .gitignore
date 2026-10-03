@@ -9,3 +9,4 @@ context/
 SQ-INBOX
 .freebuff/
 SUPPORT-DO-NOT-TRACK/
+__pycache__/

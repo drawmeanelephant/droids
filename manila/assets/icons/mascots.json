@@ -1,0 +1,84 @@
+{
+  "sourceRepository": "drawmeanelephant/virelai-sans",
+  "sourceCommit": "644ae7cea7c9b91db50eafee303d4a1011df2afd",
+  "fonttools": "4.60.1",
+  "permission": "Owner approved serving these assets on droids.filed.fyi and including them in the drawmeanelephant/droids.filed.fyi GitHub repository, 2026-10-03. No general redistribution licence is granted.",
+  "faces": [
+    {
+      "name": "VirelaiMascots-Regular",
+      "file": "fonts/VirelaiMascots-Regular.woff2",
+      "sourceFile": "fonts/VirelaiMascots-Regular.otf",
+      "sourceSha256": "a37851f32eb4f4a534e92a7c55bf6c1d23f59bff32c776cd4546845e30312e41",
+      "sha256": "f77d2046d6e6a7733b1eed8f0aa951fe68a89716fb02794d6fe2191513d23b52",
+      "bytes": 48652,
+      "tables": {
+        "CFF ": "d9b6f2325a19016b30d83a20f4bb0d6b213432d87440330c1f9b058963c4adba",
+        "COLR": "47a3cb6b523d9ac4fc5eb5b3e32a2489a23778b00daa8d1a07fbfdc82b83fac0",
+        "CPAL": "ae178b5f2f47df21e1de1be57965e950bed7a3506a9f54e4d74787f1b3bcb6e3",
+        "FFTM": "c132a27996d7476170e63a9e4395f132194b94aaab8779f61fd77024bc19ce79",
+        "GDEF": "c16c8bdbca0d58ae1d3dd139a3ee2531a4586c07bd34cfe129154276285b8adb",
+        "OS/2": "971d295ecd9122f116af65a028baaef98b95640f63572eb6c1abb2f46bb29acc",
+        "cmap": "1bad73b5eaa1f15579de97d64a3b0f996b356a1960fb89bae2fb4701cdfe2a40",
+        "head": "27d9a9e50afcf9b120308a707a110ee5856c7feca1ba0c6915ef9117d05aa41a",
+        "hhea": "5cacdcd29c46cddfce520d613719c04d28e82bd7d93b0f1ea2134849db57a6b6",
+        "hmtx": "6edb70c51b89f343e576d65d67ee72f5dffa7bb3d79f150c12e26a6b129e3083",
+        "maxp": "6c091c6c16c06a5eef88be691c0d7f831e8907d309e2915dfc18c19138e9ad5b",
+        "name": "ed48bee5dba70714e565c38e6e777a91ce4d3d6f219076569e95156733fe535b",
+        "post": "77a232e4db6b60c21f7b76ccf821e3c80c519901f11d10efb8c8df04ca82a4e8"
+      }
+    },
+    {
+      "name": "VirelaiSans-Regular",
+      "file": "fonts/VirelaiSans-Regular.woff2",
+      "sourceFile": "fonts/VirelaiSans-Regular.otf",
+      "sourceSha256": "597dedc264b50c3e3943a10e6401b2b411a4ed749d47bd5a1de2f19052352eed",
+      "sha256": "43406aca2d006d1c01c87093fb76cdee93e894cbffbbb35e665ba21b0e03839a",
+      "bytes": 32648,
+      "tables": {
+        "CFF ": "0cca435bdfafd41c0da1d882cfa003b8123a01816ba10dee2b20d0e42e1bfcc4",
+        "COLR": "8bc43cc2653aa302e1244c8c4db5a6bb73fbbeddc723b6aef18e2d2dc10ec9ec",
+        "CPAL": "fd79713803e6a05385c82e000a1a2bc3ec02d45cb54f03116063c926bd2577bf",
+        "FFTM": "18be200425ce5afab584b1977fc2639edaec9e9ae4db8bc7508f48b9f63dc101",
+        "GPOS": "f69e15be13d143ca522e706fb714eb1ad7cdc45ad04c8dad6206b087182c2213",
+        "GSUB": "a1fa7372ca35ef33afce6325fbc9247e36bb98f03569ec490efb889f67863939",
+        "OS/2": "c098c58a26ebcb7844b3a3e98065c5c0987caa97e93ca82c2a1c54a8789c7b9b",
+        "cmap": "3ef3bc50bf5b553cf0b7e1b9418e0000f841d62b9c86b6b7f5f8b5b18a522dbc",
+        "head": "2dd680164a11f4ae1a86e915326b644da98d306e83d4b270fbf80295d1c97ed0",
+        "hhea": "a2fce25d4f5c71c9c3620be6aba4bc05a6a1c8a50f32adb346f68192b30250a9",
+        "hmtx": "bb48141d8660227af1236fe53aaccb7eb8d6fb1bc8a6997864d4026e73efbce3",
+        "maxp": "3775a553a6bba3f18bb19a5c73612a70d52c25108b47130fa397b58a6917868b",
+        "name": "84bbf2ba7203eefd57f5c5de9c5b711d384e96a0a9619edfcbad28ca5228b896",
+        "post": "77a232e4db6b60c21f7b76ccf821e3c80c519901f11d10efb8c8df04ca82a4e8"
+      }
+    }
+  ],
+  "marks": [
+    {
+      "id": "oliver",
+      "label": "Oliver",
+      "face": "VirelaiMascots-Regular",
+      "codepoint": "U+E008",
+      "file": "icons/oliver.svg",
+      "sha256": "c589499f87f6c10a37fd926a8bf8797da71fd6199d19edf6cfa84ad0d36d1962",
+      "sourceFile": "src/mascots/oliver.svg"
+    },
+    {
+      "id": "filed-robot",
+      "label": "Filed robot",
+      "face": "VirelaiMascots-Regular",
+      "codepoint": "U+E009",
+      "file": "icons/filed-robot.svg",
+      "sha256": "95502ab0b227a29110f24e9bfed72da67d74f8c83eabe5ae5cfac65837e348d9",
+      "sourceFile": "src/mascots/filed-robot.svg"
+    },
+    {
+      "id": "sexiburger",
+      "label": "Sexiburger",
+      "face": "VirelaiSans-Regular",
+      "codepoint": "U+E001",
+      "file": "icons/sexiburger.svg",
+      "sha256": "d0c149d6f15105441c3331487874b64f8c5274c7ed3aa2859e8dbf84e7f6e568",
+      "sourceFile": "fonts/VirelaiSans-Regular.otf#U+E001"
+    }
+  ]
+}

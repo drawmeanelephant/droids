@@ -7,7 +7,7 @@ summary: The Zig HTML renderer boris stands on — a loving tribute to Dean Alle
 published_at: 2026-09-27T19:24:08Z
 ---
 
-# Oliver
+<h1 id="oliver" class="project-title"><span class="mascot-icon" data-mascot="oliver" data-renderer="svg" aria-hidden="true" data-boris-search-exclude><img src="../assets/icons/oliver.svg" width="40" height="40" alt=""><span class="mascot-glyph" hidden>&#xE008;</span></span><span>Oliver</span></h1>
 
 The renderer: the Zig HTML library boris builds on, joined by a
 compile-time seam — boris's closed error set is mirrored on oliver's

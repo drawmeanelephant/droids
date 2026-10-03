@@ -1,6 +1,6 @@
 /* manila: progressive enhancement for droids.filed.fyi. Every page reads
    fine without this file; it only adds the mode switch, docket chips,
-   session-record labels, terminal frames, and the search palette. */
+   session-record labels, project glyphs, terminal frames, and the search palette. */
 (() => {
   const root = document.documentElement;
   // Resolve the site root from this script's own URL (assets/js/manila.js)
@@ -26,6 +26,24 @@
     modes.addEventListener("click", (e) => {
       const b = e.target.closest("[data-mode-set]");
       if (b) setMode(b.dataset.modeSet, true);
+    });
+  }
+
+  /* ---------- project mascots ---------- */
+  // Keep the SVG until the real face loads. Hidden PUA text must never flash
+  // as a missing-character box or replace the site's readable text faces.
+  if (document.fonts) {
+    document.querySelectorAll("[data-mascot]").forEach((mark) => {
+      const glyph = mark.querySelector(".mascot-glyph");
+      const fallback = mark.querySelector("img");
+      if (!glyph || !fallback) return;
+      const family = mark.dataset.mascot === "sexiburger" ? "Virelai Sexiburger" : "Virelai Mascots";
+      document.fonts.load(`400 48px "${family}"`, glyph.textContent).then((faces) => {
+        if (!faces.length) return;
+        glyph.hidden = false;
+        fallback.hidden = true;
+        mark.dataset.renderer = "font";
+      }).catch(() => { /* failed fonts retain the SVG */ });
     });
   }
 
@@ -111,19 +129,42 @@
 
   const input = dialog.querySelector("input");
   const list = dialog.querySelector(".palette__results");
+  const status = dialog.querySelector(".palette__status");
+  const closer = dialog.querySelector("[data-palette-close]");
   let docs = null;
+  let loading = null;
   let hits = [];
   let sel = -1;
 
-  const load = async () => {
-    if (docs) return docs;
-    try {
-      const res = await fetch(new URL("_boris/search/search-index.json", BASE));
-      docs = (await res.json()).documents || [];
-    } catch {
-      docs = [];
-    }
-    return docs;
+  const clear = () => {
+    list.replaceChildren();
+    hits = [];
+    sel = -1;
+    input.removeAttribute("aria-activedescendant");
+    input.setAttribute("aria-expanded", "false");
+  };
+  const announce = (text) => {
+    status.textContent = text;
+    status.hidden = !text;
+  };
+  const load = () => {
+    if (docs) return Promise.resolve(true);
+    if (loading) return loading;
+    loading = (async () => {
+      try {
+        const res = await fetch(new URL("_boris/search/search-index.json", BASE));
+        if (!res.ok) throw new Error("search HTTP failure");
+        const index = await res.json();
+        if (!Array.isArray(index.documents)) throw new Error("invalid search index");
+        docs = index.documents;
+        return true;
+      } catch {
+        return false;
+      } finally {
+        loading = null;
+      }
+    })();
+    return loading;
   };
 
   const escapeRe = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
@@ -190,19 +231,15 @@
 
   const render = (raw) => {
     const terms = raw.toLowerCase().split(/\s+/).filter(Boolean);
-    list.replaceChildren();
-    hits = [];
-    sel = -1;
-    input.setAttribute("aria-expanded", String(terms.length > 0));
+    clear();
+    announce("");
     if (!terms.length) return;
     hits = rank(terms);
     if (!hits.length) {
-      const li = document.createElement("li");
-      li.className = "palette__empty";
-      li.textContent = "no matches in the graph";
-      list.append(li);
+      announce("no matches in the graph");
       return;
     }
+    input.setAttribute("aria-expanded", "true");
     hits.forEach(({ d, best }, i) => {
       const li = document.createElement("li");
       li.id = "pr-" + i;
@@ -230,19 +267,26 @@
     select(0);
   };
 
+  const search = async () => {
+    clear();
+    if (!docs) announce("loading search…");
+    const ready = await load();
+    if (!dialog.open) return;
+    if (ready) render(input.value.trim());
+    else announce("search unavailable; try typing again or reopen search");
+  };
   const open = () => {
     if (dialog.open) return;
     dialog.showModal();
     input.select();
-    load().then(() => render(input.value.trim()));
+    search();
   };
 
   opener.hidden = false;
   opener.addEventListener("click", open);
-  input.addEventListener("input", async () => {
-    await load();
-    render(input.value.trim());
-  });
+  closer.addEventListener("click", () => dialog.close());
+  dialog.addEventListener("close", () => { clear(); announce(""); });
+  input.addEventListener("input", search);
   input.addEventListener("keydown", (e) => {
     if (e.key === "ArrowDown" || e.key === "ArrowUp") {
       e.preventDefault();

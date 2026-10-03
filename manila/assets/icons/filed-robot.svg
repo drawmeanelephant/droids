@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128"
+     role="img" aria-labelledby="title desc">
+  <title id="title">Filed &amp; Forgotten robot</title>
+  <desc id="desc">An anxious copper filing-cabinet robot with wide worried
+    eyes, gritted teeth, hose arms, and open drawers overflowing with paper.</desc>
+
+  <g id="feet" fill="#9b581f" stroke="#382315" stroke-width="3"
+     stroke-linejoin="round">
+    <path id="foot-left" d="M 39 106 H 52 V 116 L 56 122
+      Q 57 124 54 124 H 31 V 118 L 39 115 Z"/>
+    <path id="foot-right" d="M 75 106 H 88 V 115 L 96 118
+      V 124 H 73 Q 70 124 71 122 L 75 116 Z"/>
+  </g>
+
+  <!-- Broad hose arms and three-finger hands, not individual rib details. -->
+  <g id="arm-outlines" fill="none" stroke="#382315" stroke-width="13"
+     stroke-linecap="round">
+    <path d="M 34 76 C 12 77 11 88 20 101"/>
+    <path d="M 94 76 C 116 77 117 88 108 101"/>
+  </g>
+  <g id="arms" fill="none" stroke="#9b581f" stroke-width="7"
+     stroke-linecap="round">
+    <path id="arm-left" d="M 34 76 C 12 77 11 88 20 101"/>
+    <path id="arm-right" d="M 94 76 C 116 77 117 88 108 101"/>
+  </g>
+  <g id="hands" fill="#bf7629" stroke="#382315" stroke-width="3"
+     stroke-linecap="round" stroke-linejoin="round">
+    <path id="hand-left" d="M 22 97
+      C 18 92 10 94 9 99 L 6 110 Q 6 114 10 114
+      Q 13 114 14 106 L 18 112 Q 21 115 24 112
+      Q 26 110 23 107 L 19 103 L 25 106
+      Q 29 108 31 104 Q 31 102 27 100 Z"/>
+    <path id="hand-right" transform="translate(128 0) scale(-1 1)" d="M 22 97
+      C 18 92 10 94 9 99 L 6 110 Q 6 114 10 114
+      Q 13 114 14 106 L 18 112 Q 21 115 24 112
+      Q 26 110 23 107 L 19 103 L 25 106
+      Q 29 108 31 104 Q 31 102 27 100 Z"/>
+  </g>
+
+  <g id="cabinet" stroke="#382315" stroke-width="3" stroke-linejoin="round">
+    <path id="neck" fill="#9b581f" d="M 52 58 H 78 V 72 H 52 Z"/>
+    <path id="body-side" fill="#9b581f" d="M 26 73 L 34 67
+      V 110 L 26 105 Z"/>
+    <path id="body" fill="#bf7629" d="M 34 67 H 94 V 110 H 34 Z"/>
+    <path id="drawer-cavity" fill="#382315" d="M 35 73 H 93 L 99 80 H 40 Z"/>
+  </g>
+
+  <g id="overflow-paper" fill="#fff3d6" stroke="#382315" stroke-width="2.5"
+     stroke-linejoin="round">
+    <path id="paper-left" d="M 43 80 L 38 68 H 57 L 64 80 Z"/>
+    <path id="paper-right" d="M 61 80 L 69 66 H 90 L 84 80 Z"/>
+    <path id="paper-loose" d="M 6 54 L 20 57 L 17 69 L 3 65 Z"/>
+  </g>
+  <g id="drawers" fill="#bf7629" stroke="#382315" stroke-width="3"
+     stroke-linejoin="round">
+    <path id="drawer-upper-side" fill="#9b581f" d="M 32 76 L 40 80 V 96 L 32 92 Z"/>
+    <path id="drawer-upper" d="M 40 80 H 99 V 96 H 40 Z"/>
+    <path id="drawer-lower" d="M 32 96 H 85 V 112 H 32 Z"/>
+  </g>
+  <g id="handle-outlines" fill="none" stroke="#382315" stroke-width="6"
+     stroke-linecap="round" stroke-linejoin="round">
+    <path d="M 56 85 V 87 Q 56 89 59 89 H 79 Q 82 89 82 87 V 85"/>
+    <path d="M 45 101 V 103 Q 45 105 48 105 H 67 Q 70 105 70 103 V 101"/>
+  </g>
+  <g id="handles" fill="none" stroke="#fff3d6" stroke-width="3"
+     stroke-linecap="round" stroke-linejoin="round">
+    <path d="M 56 85 V 87 Q 56 89 59 89 H 79 Q 82 89 82 87 V 85"/>
+    <path d="M 45 101 V 103 Q 45 105 48 105 H 67 Q 70 105 70 103 V 101"/>
+  </g>
+
+  <!-- Square face, huge eyes, uneven worried brows, and one tooth bar. -->
+  <g id="head" stroke="#382315" stroke-width="3" stroke-linejoin="round">
+    <path id="head-tab" fill="#9b581f" d="M 43 5 H 82 V 17 H 43 Z"/>
+    <path id="head-side" fill="#9b581f" d="M 22 21 L 30 12 V 65 L 22 58 Z"/>
+    <path id="head-front" fill="#bf7629" d="M 30 12 H 99 V 65 H 30 Z"/>
+  </g>
+  <g id="eyes" fill="#fff3d6" stroke="#382315" stroke-width="3">
+    <ellipse id="eye-left" cx="47" cy="33" rx="11" ry="12"/>
+    <ellipse id="eye-right" cx="80" cy="32" rx="11" ry="12"/>
+  </g>
+  <g id="pupils" fill="#382315">
+    <ellipse cx="48" cy="36" rx="3" ry="4.5"/>
+    <ellipse cx="79" cy="35" rx="3" ry="4.5"/>
+  </g>
+  <g id="brows" fill="none" stroke="#382315" stroke-width="3"
+     stroke-linecap="round">
+    <path d="M 36 20 L 48 16"/>
+    <path d="M 76 16 Q 86 17 90 22"/>
+  </g>
+  <path id="mouth" fill="#fff3d6" stroke="#382315" stroke-width="3"
+        stroke-linejoin="round" d="M 46 49
+    Q 64 44 83 49 L 86 59 Q 64 55 42 60 Z"/>
+  <path id="teeth" fill="none" stroke="#382315" stroke-width="2.5"
+        d="M 53 48 V 58 M 64 47 V 57 M 75 48 V 58"/>
+
+  <path id="spark" fill="#ffbe35" stroke="#382315" stroke-width="2"
+        stroke-linejoin="round" d="M 114 5 L 104 20 H 113
+    L 108 32 L 124 15 H 115 Z"/>
+</svg>
