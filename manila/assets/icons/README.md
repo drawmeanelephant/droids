@@ -7,6 +7,8 @@ The owner approved serving these artwork/font assets on
 **droids.filed.fyi only**, on 2026-10-03. Virelai Sans has no published
 redistribution licence; this approval is not a general reuse or commercial
 licence, and it does not place these assets under Geist's SIL OFL.
+They are also explicitly excluded from the site's MIT software licence;
+see `../fonts/VIRELAI-NOTICE.txt` and the repository's `LICENSING.md`.
 Serving WOFF2 makes the font retrievable. No other hosting target is
 approved by this record. The owner also approved including these assets
 in the `drawmeanelephant/droids.filed.fyi` GitHub repository and its

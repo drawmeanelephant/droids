@@ -1,0 +1,25 @@
+Virelai font and mascot artwork notice
+
+The following assets are excluded from the repository's MIT licence:
+
+- VirelaiMascots-Regular.woff2
+- VirelaiSans-Regular.woff2
+- ../icons/oliver.svg
+- ../icons/filed-robot.svg
+- ../icons/sexiburger.svg
+
+All rights reserved, except for the owner's specific permission to serve
+these assets on droids.filed.fyi and include them in the
+drawmeanelephant/droids.filed.fyi GitHub repository, recorded on 2026-10-03.
+
+That permission is not a general licence to embed these assets on another
+site, modify them, redistribute them elsewhere, or use them commercially.
+Obtain separate permission or remove/replace them before deploying a fork.
+This notice does not alter any rights granted separately by the owner.
+
+The fonts' original name tables and copyright records are preserved.
+Source pins, artifact hashes, and artwork provenance are recorded in
+../icons/mascots.json and ../icons/README.md.
+
+This notice does not apply to Geist or Geist Mono. Their separate
+SIL Open Font License 1.1 is in OFL.txt.
