@@ -21,6 +21,8 @@ jobs:
       - uses: ./.github/actions/setup-boris
       - name: Validate
         run: boris validate --input content --theme manila --layout-rule default id:index manila/layouts/trunk.html
+      - name: Validate reusable content starter
+        run: boris validate --input examples/review-site/content --theme manila --layout-rule default id:index manila/layouts/trunk.html
       - name: Test theme
         run: node --test tests/*.test.cjs
       - uses: actions/setup-python@v5
